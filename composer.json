@@ -1,0 +1,30 @@
+{
+    "name": "subbly/installer",
+    "description": "Installer of Subbly CMS",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Nicolas Brousse",
+            "email": "nicolas@subbly.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.3"
+    },
+
+    "require-dev": {
+        "twig/twig": "*",
+        "symfony/console": "~2.6",
+        "symfony/finder": "~2.3",
+        "symfony/filesystem": "~2.3"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "": "lib/",
+            "Subbly_": "src/"
+        }
+    }
+}
