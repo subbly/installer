@@ -7,14 +7,23 @@ class Subbly_Installer
     const HANGAR_API_BASEURL = 'http://hangar.subbly.com/api/v1';
 
     /**
+     * The constructor
+     */
+    public function __construct()
+    {
+        Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/log');
+        Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
+    }
+
+    /**
      *
      */
     public function run()
     {
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
 
-        Subbly_Installer_Logger::info(sprintf('Check the requirements'));
-        Subbly_Installer_Requirements::check();
+        $requirements = new Subbly_Installer_Requirements();
+        $requirements->check();
 
         Subbly_Installer_Logger::info(sprintf('What else?'));
     }

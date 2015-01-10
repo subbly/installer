@@ -2,9 +2,11 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-# if env not set, set env = production and debug false;
-
-Subbly_Installer_Logger::setLogDirectory(__DIR__.'/log');
+// Constants
+define('BASEDIR', __DIR__);
+if (!defined('DEBUG')) {
+    define('DEBUG', false);
+}
 
 $installer = new Subbly_Installer();
 $installer->run();
