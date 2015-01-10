@@ -31,17 +31,27 @@ class CompileCommand extends Command
         $outputFilename = $this->getRootDir().'/build/installer.php.build';
         $finalFilename  = $this->getRootDir().'/build/installer.php';
 
+        $this->output->writeln(' > <comment>Prepare</comment>');
         $this->prepare($outputFilename, $finalFilename);
 
+        $this->output->writeln(' > <comment>Compile views</comment>');
         $this->compileViews(); // Call each views and compile it into a php Class
 
-        $this->compileClass(); // Get all php Class files into src/ and past the content into the export file
+        $this->output->writeln(' > <comment>Compile classes</comment>');
+        $this->compileClasses(); // Get all php Class files into src/ and past the content into the export file
 
+        $this->output->writeln(' > <comment>Cleanup</comment>');
+        $this->cleanup();
+
+        $this->output->writeln(' > <comment>Finalize the compilation</comment>');
         $this->finalize($finalFilename);
     }
 
     /**
+     * Prepare files for compilation
      *
+     * @param string $outputFilename
+     * @param string $finalFilename
      */
     protected function prepare($outputFilename, $finalFilename)
     {
@@ -51,7 +61,7 @@ class CompileCommand extends Command
 
             $continue = $this->dialog->askConfirmation(
                 $this->output,
-                sprintf('<question>File "%s" or "%s" already exists. Do you want remove it to continue?</question>',
+                sprintf('<question>File "%s" or "%s" already exists. Do you want remove thes files to continue?</question>',
                     $outputFilename,
                     $finalFilename
                 ),
@@ -63,6 +73,7 @@ class CompileCommand extends Command
             }
 
             $this->fs->remove($outputFilename);
+            $this->fs->remove($finalFilename);
         }
 
         $this->fs->copy(
@@ -75,7 +86,7 @@ class CompileCommand extends Command
     }
 
     /**
-     *
+     * Compile the views
      */
     protected function compileViews()
     {
@@ -83,9 +94,9 @@ class CompileCommand extends Command
     }
 
     /**
-     *
+     * Compile the php classes
      */
-    protected function compileClass()
+    protected function compileClasses()
     {
         $finder = new Finder();
         $finder
@@ -101,7 +112,16 @@ class CompileCommand extends Command
     }
 
     /**
-     *
+     * Cleanup the installer php file
+     */
+    protected function cleanup()
+    {
+        // TODO Try to uglify the php
+        //       - Remove comments
+    }
+
+    /**
+     * Finaliaze the compilation
      */
     protected function finalize($outputFilename)
     {
@@ -116,11 +136,19 @@ class CompileCommand extends Command
     }
 
     /**
+     * Get the contents of a PHP file
      *
+     * @param \SplFileInfo $file
+     *
+     * @return string
      */
     protected function getPHPFileContents(\SplFileInfo $file)
     {
-        $content = file_get_contents($file->getRealPath());
+        if (!$this->fs->exists($file->getRealPath())) {
+            return '';
+        }
+
+        $content = @file_get_contents($file->getRealPath());
         $content = preg_replace('/^.+\n/', '', $content);
 
         return $content;
