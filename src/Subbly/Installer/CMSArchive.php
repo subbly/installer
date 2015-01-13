@@ -5,20 +5,25 @@ class Subbly_Installer_CMSArchive
     /**
      *
      */
-    public function latest()
+    public static function downloadLatestArchive()
     {
-        $url = Subbly_Installer::HANGAR_API_BASEURL . '/cms/latest';
-        $res = Subbly_Installer_Util::call_json($url);
+        $url = Subbly_Installer::HANGAR_API_CMSLATEST;
+        $cmsVersion = Subbly_Installer_Util::call_json($url);
 
         // Download
+        $file = Subbly_Installer_Util::download($cmsVersion->download_url);
+
+        if (!self::verifyChecksum($file, $cmsVersion->checksum)) {
+            throw new ErrorException('TODO'); // TODO
+        }
     }
 
-    protected function verifyChecksum()
+    protected static function verifyChecksum($file, $checksum)
     {
-
+        return md5_file($file) == $checksum;
     }
 
-    public function uncompress()
+    protected static function uncompress()
     {
         try {
             $this->uncompressWithPhar();
@@ -27,10 +32,10 @@ class Subbly_Installer_CMSArchive
         }
     }
 
-    protected function uncompressWithPhar()
+    protected static function uncompressWithPhar()
     {
         $p = new PharData('/path/to/my.tar.gz');
-        $p->decompress(); // creates /path/to/my.tar
+        $p->decompress();
 
         // unarchive from the tar
         $phar = new PharData('/path/to/my.tar');
