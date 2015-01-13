@@ -22,7 +22,7 @@ class Subbly_Installer_I18n
         if (array_key_exists($key, self::$locales)) {
             $message = self::$locales[$key];
 
-            foreach ($params as $k=>$v) {
+            foreach ($params as $k => $v) {
                 $params[$k] = '{'.$v.'}';
             }
 

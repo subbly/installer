@@ -47,15 +47,21 @@ class Subbly_Installer
     /**
      *
      */
-    protected function showRequirementsView(Subbly_Installer_Requirements $requirements) {}
+    protected function showRequirementsView(Subbly_Installer_Requirements $requirements)
+    {
+    }
 
     /**
      *
      */
-    protected function showSettingsFormView() {}
+    protected function showSettingsFormView()
+    {
+    }
 
     /**
      *
      */
-    protected function showSuccessView() {}
+    protected function showSuccessView()
+    {
+    }
 }

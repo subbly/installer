@@ -3,7 +3,6 @@
 namespace Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
-
 use Console\Command\CompileCommand;
 
 class Application extends BaseApplication

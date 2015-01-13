@@ -26,12 +26,11 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
     final public function uncompress($targetDir)
     {
         foreach ((array) $this->loadStrategies() as $strategie) {
-
             try {
                 call_user_func(array($this, 'uncompressWith'.$strategie), $targetDir);
 
                 return;
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 // TODO log info
                 Subbly_Installer_Logger::info(sprintf('Can\'t unarchive the cms with "%s" startegie.', $strategie), array($e));
             }

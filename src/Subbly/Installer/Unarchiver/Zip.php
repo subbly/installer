@@ -30,7 +30,7 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
     {
         $zip = new ZipArchive();
 
-        if ($zip->open($this->archiveFile) === TRUE) {
+        if ($zip->open($this->archiveFile) === true) {
             var_dump($zip->extractTo($targetDir));
             $zip->close();
         } else {

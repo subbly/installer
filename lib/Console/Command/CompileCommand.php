@@ -3,7 +3,6 @@
 namespace Console\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -58,7 +57,6 @@ class CompileCommand extends Command
         $this->fs->mkdir($this->getRootDir().'/build/');
 
         if ($this->fs->exists($outputFilename) || $this->fs->exists($finalFilename)) {
-
             $continue = $this->dialog->askConfirmation(
                 $this->output,
                 sprintf('<question>File "%s" or "%s" already exists. Do you want remove thes files to continue?</question>',
@@ -90,7 +88,6 @@ class CompileCommand extends Command
      */
     protected function compileViews()
     {
-
     }
 
     /**

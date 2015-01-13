@@ -29,7 +29,6 @@ class Subbly_Installer_Requirements
     public function __construct()
     {
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
-
     }
 
     /**
@@ -50,13 +49,11 @@ class Subbly_Installer_Requirements
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
         Subbly_Installer_Logger::info(sprintf('Check the requirements'));
 
-        foreach ($this->modules as $groupName=>$modulesGroup) {
+        foreach ($this->modules as $groupName => $modulesGroup) {
             foreach ($modulesGroup as $module) {
-
                 if (!extension_loaded($module)) {
                     $this->unloadedModules[$groupName][] = $module;
                 }
-
             }
         }
 

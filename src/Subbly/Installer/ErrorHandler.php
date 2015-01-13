@@ -25,7 +25,7 @@ class Subbly_Installer_ErrorHandler
      *
      * @return The registered error handler
      */
-    static public function register($debug = false)
+    public static function register($debug = false)
     {
         self::$debug = $debug;
         set_error_handler(array(new static(), 'handleError'));
@@ -35,7 +35,7 @@ class Subbly_Installer_ErrorHandler
     /**
      * Turn off errors
      */
-    static public function quiet()
+    public static function quiet()
     {
         error_reporting(0);
     }
@@ -43,7 +43,7 @@ class Subbly_Installer_ErrorHandler
     /**
      * Unregisters the error handler.
      */
-    static public function unregister()
+    public static function unregister()
     {
         restore_error_handler();
     }

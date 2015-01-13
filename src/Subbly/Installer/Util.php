@@ -13,7 +13,7 @@ class Subbly_Installer_Util
     /**
      *
      */
-    public static function download($url, $targetPath=null)
+    public static function download($url, $targetPath = null)
     {
         if ($targetPath === null || !is_dir($targetPath)) {
             $targetPath = BASEDIR.'/tmp/';

@@ -3,10 +3,8 @@
 namespace Console\Command;
 
 use Console\ErrorHandler;
-
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -22,8 +20,8 @@ class Command extends BaseCommand
     /**
      * Initialize
      *
-     * @param InputInterface   $input
-     * @param OutputInterface  $output
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
