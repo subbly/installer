@@ -3,7 +3,9 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 // Constants
-define('BASEDIR', __DIR__);
+if (!defined('BASEDIR')) {
+    define('BASEDIR', __DIR__);
+}
 if (!defined('DEBUG')) {
     define('DEBUG', false);
 }
