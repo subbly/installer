@@ -13,6 +13,9 @@ class Subbly_Installer
     {
         Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/log');
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
+
+        Subbly_Installer_ErrorHandler::quiet();
+        Subbly_Installer_ErrorHandler::register(DEBUG === true);
     }
 
     /**

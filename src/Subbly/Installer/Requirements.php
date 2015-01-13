@@ -15,6 +15,7 @@ class Subbly_Installer_Requirements
             'mcrypt',
             'curl',
             'zip',
+            '1234',
         ),
     );
 
@@ -32,6 +33,11 @@ class Subbly_Installer_Requirements
 
     }
 
+    /**
+     * Check if the requirements are ok or not
+     *
+     * @return boolean
+     */
     public function isOK()
     {
         return count($this->unloadedModules) === 0;
@@ -45,14 +51,18 @@ class Subbly_Installer_Requirements
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
         Subbly_Installer_Logger::info(sprintf('Check the requirements'));
 
-        foreach ($this->modules as $modulesGroup) {
+        foreach ($this->modules as $groupName=>$modulesGroup) {
             foreach ($modulesGroup as $module) {
 
                 if (!extension_loaded($module)) {
-                    $this->unloadedModules[$modulesGroup][] = $module;
+                    $this->unloadedModules[$groupName][] = $module;
                 }
 
             }
+        }
+
+        if (!$this->isOK()) {
+            Subbly_Installer_Logger::info(sprintf('Requirements missing'), $this->unloadedModules);
         }
     }
 }
