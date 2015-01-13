@@ -128,7 +128,7 @@ class CompileCommand extends Command
         $file = new \SplFileInfo($this->getRootDir().'/install.php');
 
         $content = $this->getPHPFileContents($file);
-        // TODO remove the autload call
+        $content = str_replace('require_once __DIR__.\'/vendor/autoload.php\';', '', $content);
 
         $this->installerFile->fwrite($content);
 
@@ -149,7 +149,17 @@ class CompileCommand extends Command
         }
 
         $content = @file_get_contents($file->getRealPath());
-        $content = preg_replace('/^.+\n/', '', $content);
+
+        // Remove first line "<?php"
+        $content = preg_replace("/^.+\n/", '', $content);
+
+        // Remove comments
+        $content = preg_replace('!/\*.*?\*/!s', '', $content);
+        $content = preg_replace('/\n\s*\n/', "\n", $content);
+        $content = preg_replace("/^\s*\/\/.+$/m", '', $content);
+
+        // Remove empty lines
+        $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
 
         return $content;
     }
