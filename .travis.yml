@@ -11,9 +11,9 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction --dev
 
 script:
+  # - phpunit --colors --coverage-text
   - bin/console installer:compile
   # - bin/console installer:test
-  # - phpunit --colors --coverage-text
 
 notifications:
   email:
