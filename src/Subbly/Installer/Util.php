@@ -13,8 +13,18 @@ class Subbly_Installer_Util
     /**
      *
      */
-    public static function download($url, $targetPath)
+    public static function download($url, $targetPath=null)
     {
-        copy($source, $dest);
+        if ($targetPath === null || !is_dir($targetPath)) {
+            $targetPath = BASEDIR.'/tmp/';
+            mkdir(BASEDIR.'/tmp/', 0777, true);
+        }
+
+        $urlPaths = explode('/', $url);
+        $filepath = $targetPath.end($urlPaths);
+
+        file_put_contents($filepath, fopen($url, 'r'));
+
+        return $filepath;
     }
 }

@@ -4,6 +4,7 @@ class Subbly_Installer
 {
     const VERSION = '0.1.0-dev';
 
+    // const HANGAR_API_CMSLATEST = 'http://hangar.subbly.com/api/v1/cms/latest';
     const HANGAR_API_CMSLATEST = 'http://hangar.subbly.dev/api/v1/cms/latest';
 
     /**
@@ -11,11 +12,12 @@ class Subbly_Installer
      */
     public function __construct()
     {
+        // Logger
         Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/log');
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
 
-        Subbly_Installer_ErrorHandler::quiet();
-        Subbly_Installer_ErrorHandler::register(DEBUG === true);
+        // Error handler
+        Subbly_Installer_ErrorHandler::register(true);
     }
 
     /**
@@ -25,12 +27,35 @@ class Subbly_Installer
     {
         Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
 
+        // Requirements
         $requirements = new Subbly_Installer_Requirements();
         $requirements->check();
-        // var_dump($requirements->isOK());
 
-        Subbly_Installer_CMSArchive::downloadLatestArchive();
+        if (!$requirements->isOK()) {
+            // TODO show page with the missing requirements
+            return $this->showRequirementsView($requirements);
+        }
+
+        // Download the archive
+        $archiver = new Subbly_Installer_CMSArchiver();
+        $archiver->downloadLatest();
+        $archiver->uncompress();
 
         Subbly_Installer_Logger::info(sprintf('What else?'));
     }
+
+    /**
+     *
+     */
+    protected function showRequirementsView(Subbly_Installer_Requirements $requirements) {}
+
+    /**
+     *
+     */
+    protected function showSettingsFormView() {}
+
+    /**
+     *
+     */
+    protected function showSuccessView() {}
 }

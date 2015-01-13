@@ -15,7 +15,6 @@ class Subbly_Installer_Requirements
             'mcrypt',
             'curl',
             'zip',
-            '1234',
         ),
     );
 
