@@ -5,7 +5,7 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
     protected $archiveFile;
 
     /**
-     *
+     * The constructor.
      */
     public function __construct($archiveFile)
     {

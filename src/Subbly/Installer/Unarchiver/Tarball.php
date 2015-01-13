@@ -8,7 +8,7 @@ class Subbly_Installer_Unarchiver_Tarball extends Subbly_Installer_Unarchiver_Un
     protected function loadStrategies()
     {
         return array(
-            'Phar',
+            // 'Phar',
             // 'ExecutingCommand',
         );
     }
