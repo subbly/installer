@@ -1,3 +1,5 @@
 /vendor/
 /log
 /build
+/tmp/*
+!/tmp/.gitkeep
