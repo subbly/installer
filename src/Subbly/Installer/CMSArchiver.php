@@ -12,7 +12,7 @@ class Subbly_Installer_CMSArchiver
     }
 
     /**
-     *
+     * Download the latest version of the CMS
      */
     public function downloadLatest()
     {
@@ -31,7 +31,12 @@ class Subbly_Installer_CMSArchiver
     }
 
     /**
+     * Verfiy a checksum
      *
+     * @param string $file     Path of the file to check
+     * @param string $checksum
+     *
+     * @return boolean
      */
     protected static function verifyChecksum($file, $checksum)
     {
@@ -39,10 +44,14 @@ class Subbly_Installer_CMSArchiver
     }
 
     /**
-     *
+     * Uncompress the downloaded archive
      */
     public function uncompress()
     {
+        if (empty($this->archiveFile)) {
+            return; // IDEA return a exception instead
+        }
+
         switch ($this->getMimeType($this->archiveFile)) {
             case 'application/zip':
                 $unarchiver = new Subbly_Installer_Unarchiver_Zip($this->archiveFile);
@@ -57,7 +66,11 @@ class Subbly_Installer_CMSArchiver
     }
 
     /**
+     * Get the mime type of the downloaded archive
      *
+     * @param string $filename
+     *
+     * @return string
      */
     protected function getMimeType($filename)
     {

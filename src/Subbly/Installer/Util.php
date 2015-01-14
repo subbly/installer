@@ -3,7 +3,11 @@
 class Subbly_Installer_Util
 {
     /**
+     * Call a JSON REST api
      *
+     * @param string $url
+     *
+     * @param mixed
      */
     public static function call_json($url)
     {
@@ -11,7 +15,12 @@ class Subbly_Installer_Util
     }
 
     /**
+     * Download a file
      *
+     * @param string $url
+     * @param string $targetPath
+     *
+     * @return string The path of the downloaded file
      */
     public static function download($url, $targetPath = null)
     {

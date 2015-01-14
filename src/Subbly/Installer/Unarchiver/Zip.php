@@ -3,35 +3,27 @@
 class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarchiver
 {
     /**
-     *
+     * {@inheritdoc}
      */
     protected function loadStrategies()
     {
         return array(
-            'Phar',
             'ZipArchive',
             // 'ExecutingCommand',
         );
     }
 
     /**
+     * Uncompress zip archive with ZipArchive class
      *
-     */
-    protected function uncompressWithPhar($targetDir)
-    {
-        $phar = new PharData($this->archiveFile);
-        $phar->extractTo($targetDir);
-    }
-
-    /**
-     *
+     * @param string $targetDir
      */
     protected function uncompressWithZip($targetDir)
     {
         $zip = new ZipArchive();
 
         if ($zip->open($this->archiveFile) === true) {
-            var_dump($zip->extractTo($targetDir));
+            $zip->extractTo($targetDir);
             $zip->close();
         } else {
             throw new ErrorException(''); // TODO

@@ -6,6 +6,8 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
 
     /**
      * The constructor.
+     *
+     * @param string $archiveFile
      */
     public function __construct($archiveFile)
     {
@@ -16,12 +18,18 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
     }
 
     /**
+     * Load the unarchive strategies
      *
+     * @return array
      */
     abstract protected function loadStrategies();
 
     /**
+     * Uncompress the archive
      *
+     * @param string $targetDir
+     *
+     * @return boolean
      */
     final public function uncompress($targetDir)
     {
@@ -29,7 +37,7 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
             try {
                 call_user_func(array($this, 'uncompressWith'.$strategie), $targetDir);
 
-                return;
+                return true;
             } catch (Exception $e) {
                 // TODO log info
                 Subbly_Installer_Logger::info(sprintf('Can\'t unarchive the cms with "%s" startegie.', $strategie), array($e));
