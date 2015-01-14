@@ -4,8 +4,7 @@ class Subbly_Installer
 {
     const VERSION = '0.1.0-dev';
 
-    // const HANGAR_API_CMSLATEST = 'http://hangar.subbly.com/api/v1/cms/latest';
-    const HANGAR_API_CMSLATEST = 'http://hangar.subbly.dev/api/v1/cms/latest';
+    const HANGAR_API_CMSLATEST = HANGAR_API_HOST. '/api/v1/cms/latest';
 
     /**
      * The constructor
