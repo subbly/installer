@@ -70,7 +70,7 @@ class Subbly_Installer_ErrorHandler
      */
     public function handleException($exception)
     {
-        Subbly_Installer_Logger::error(sprintf('%s thrown with message "%s" in %s on line %s',
+        Subbly_Installer_Logger::get()->error(sprintf('%s thrown with message "%s" in %s on line %s',
             get_class($exception),
             $exception->getMessage(),
             $exception->getFile(),
