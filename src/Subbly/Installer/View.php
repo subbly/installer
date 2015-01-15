@@ -2,5 +2,13 @@
 
 class Subbly_Installer_View
 {
-    // Use ob stream?
+    /**
+     *
+     */
+    public static function render($templateName, array $params = array())
+    {
+        $content = Subbly_Installer_ViewContainer::renderTemplate($templateName, $params);
+
+        print $content;
+    }
 }

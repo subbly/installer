@@ -2,9 +2,9 @@
 <head>
     <title></title>
 
-    <style><?= /* Class::partial('assets/style.css') */ ?></style>
+    <style><?php echo Subbly_Installer_ViewContainer::partial('assets/style.css'); ?></style>
 </head>
 <body>
-    <?= Class::partial($page); ?>
+    <?php echo Subbly_Installer_ViewContainer::partial($_page_template, $_view_params); ?>
 </body>
 </html>
