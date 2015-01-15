@@ -1,6 +1,6 @@
 <?php
 
-class Subbly_Installer_CMSArchiver
+class Subbly_Installer_Installer
 {
     protected $archiveFile;
 
@@ -16,8 +16,7 @@ class Subbly_Installer_CMSArchiver
      */
     public function downloadLatest()
     {
-        $url = Subbly_Installer::HANGAR_API_CMSLATEST;
-        $apiResponse = Subbly_Installer_Util::call_json($url);
+        $apiResponse = Subbly_Installer_Util::call_json(HANGAR_API_CMSLATEST);
         $cmsVersion = $apiResponse->response->cms_version;
 
         // TODO check if there is a downloaded file. And if there is, look the checksum to be sure it's the latest version and the good name. If ok continue, else download again
@@ -28,19 +27,6 @@ class Subbly_Installer_CMSArchiver
         if (!self::verifyChecksum($this->archiveFile, $cmsVersion->checksum)) {
             throw new ErrorException('TODO'); // TODO
         }
-    }
-
-    /**
-     * Verfiy a checksum
-     *
-     * @param string $file     Path of the file to check
-     * @param string $checksum
-     *
-     * @return boolean
-     */
-    protected static function verifyChecksum($file, $checksum)
-    {
-        return md5_file($file) === $checksum;
     }
 
     /**
@@ -64,6 +50,30 @@ class Subbly_Installer_CMSArchiver
 
         $unarchiver->uncompress(BASEDIR);
     }
+
+    /**
+     *
+     */
+    public function install()
+    {
+        // TODO execute what it must be
+        //
+        //      * migrations
+    }
+
+    /**
+     * Verfiy a checksum
+     *
+     * @param string $file     Path of the file to check
+     * @param string $checksum
+     *
+     * @return boolean
+     */
+    protected static function verifyChecksum($file, $checksum)
+    {
+        return md5_file($file) === $checksum;
+    }
+
 
     /**
      * Get the mime type of the downloaded archive
