@@ -28,7 +28,7 @@ class Subbly_Installer_Requirements
      */
     public function __construct()
     {
-        Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
+        Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
     }
 
     /**
@@ -46,8 +46,8 @@ class Subbly_Installer_Requirements
      */
     public function check()
     {
-        Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
-        Subbly_Installer_Logger::info(sprintf('Check the requirements'));
+        Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
+        Subbly_Installer_Logger::get()->info(sprintf('Check the requirements'));
 
         foreach ($this->modules as $groupName => $modulesGroup) {
             foreach ($modulesGroup as $module) {
@@ -58,7 +58,37 @@ class Subbly_Installer_Requirements
         }
 
         if (!$this->isOK()) {
-            Subbly_Installer_Logger::info(sprintf('Requirements missing'), $this->unloadedModules);
+            Subbly_Installer_Logger::get()->info(sprintf('Requirements missing'), $this->unloadedModules);
         }
+    }
+
+    /**
+     *
+     */
+    public function getInstalledModules()
+    {
+        $modules = $this->modules;
+
+        foreach ($modules as $groupName => $modulesGroup) {
+            foreach ($modulesGroup as $module) {
+                if (
+                    array_key_exists($groupName, $this->unloadedModules)
+                    && in_array($module, $this->unloadedModules[$groupName])
+                ) {
+                    $key = array_search($module, $this->modules[$groupName]);
+                    unset($modules[$groupName][$key]);
+                }
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
+     *
+     */
+    public function getMissingModules()
+    {
+        return $this->unloadedModules;
     }
 }
