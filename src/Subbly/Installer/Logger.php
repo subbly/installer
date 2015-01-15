@@ -71,6 +71,14 @@ class Subbly_Installer_Logger
     private static $instance;
 
     /**
+    *
+    */
+    public static function get()
+    {
+        return self::getInstance();
+    }
+
+    /**
      *
      */
     public static function getInstance()
@@ -250,9 +258,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function emergency($message, array $context = array())
+    public function emergency($message, array $context = array())
     {
-        self::getInstance()->log(self::EMERGENCY, $message, $context);
+        $this->log(self::EMERGENCY, $message, $context);
     }
 
     /**
@@ -265,9 +273,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function alert($message, array $context = array())
+    public function alert($message, array $context = array())
     {
-        self::getInstance()->log(self::ALERT, $message, $context);
+        $this->log(self::ALERT, $message, $context);
     }
 
     /**
@@ -279,9 +287,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function critical($message, array $context = array())
+    public function critical($message, array $context = array())
     {
-        self::getInstance()->log(self::CRITICAL, $message, $context);
+        $this->log(self::CRITICAL, $message, $context);
     }
 
     /**
@@ -292,9 +300,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function error($message, array $context = array())
+    public function error($message, array $context = array())
     {
-        self::getInstance()->log(self::ERROR, $message, $context);
+        $this->log(self::ERROR, $message, $context);
     }
 
     /**
@@ -307,9 +315,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function warning($message, array $context = array())
+    public function warning($message, array $context = array())
     {
-        self::getInstance()->log(self::WARNING, $message, $context);
+        $this->log(self::WARNING, $message, $context);
     }
 
     /**
@@ -319,9 +327,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function notice($message, array $context = array())
+    public function notice($message, array $context = array())
     {
-        self::getInstance()->log(self::NOTICE, $message, $context);
+        $this->log(self::NOTICE, $message, $context);
     }
 
     /**
@@ -333,9 +341,9 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function info($message, array $context = array())
+    public function info($message, array $context = array())
     {
-        self::getInstance()->log(self::INFO, $message, $context);
+        $this->log(self::INFO, $message, $context);
     }
 
     /**
@@ -345,8 +353,8 @@ class Subbly_Installer_Logger
      * @param  array  $context
      * @return null
      */
-    public static function debug($message, array $context = array())
+    public function debug($message, array $context = array())
     {
-        self::getInstance()->log(self::DEBUG, $message, $context);
+        $this->log(self::DEBUG, $message, $context);
     }
 }
