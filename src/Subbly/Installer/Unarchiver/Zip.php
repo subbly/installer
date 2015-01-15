@@ -8,9 +8,21 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
     protected function loadStrategies()
     {
         return array(
+            // 'PharData',
             'ZipArchive',
             // 'ExecutingCommand',
         );
+    }
+
+    /**
+     * Uncompress zip archive with PharData class
+     *
+     * @param string $targetDir
+     */
+    protected function uncompressWithPharData($targetDir)
+    {
+        $phar = new PharData($this->archiveFile);
+        $phar->extractTo($targetDir);
     }
 
     /**
@@ -18,7 +30,7 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
      *
      * @param string $targetDir
      */
-    protected function uncompressWithZip($targetDir)
+    protected function uncompressWithZipArchive($targetDir)
     {
         $zip = new ZipArchive();
 

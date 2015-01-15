@@ -40,7 +40,7 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
                 return true;
             } catch (Exception $e) {
                 // TODO log info
-                Subbly_Installer_Logger::info(sprintf('Can\'t unarchive the cms with "%s" startegie.', $strategie), array($e));
+                Subbly_Installer_Logger::get()->info(sprintf('Can\'t unarchive the cms with "%s" startegie.', $strategie), array($e));
             }
         }
 
