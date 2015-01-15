@@ -14,7 +14,7 @@ class Application extends BaseApplication
     {
         error_reporting(-1);
 
-        parent::__construct('Subbly installer', \Subbly_Installer::VERSION);
+        parent::__construct('Subbly installer', \Subbly_Installer_Application::VERSION);
 
         $this->add(new CompileCommand());
     }

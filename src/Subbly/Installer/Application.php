@@ -1,10 +1,8 @@
 <?php
 
-class Subbly_Installer
+class Subbly_Installer_Application
 {
     const VERSION = '0.1.0-dev';
-
-    const HANGAR_API_CMSLATEST = HANGAR_API_HOST. '/api/v1/cms/latest';
 
     /**
      * The constructor
@@ -12,8 +10,9 @@ class Subbly_Installer
     public function __construct()
     {
         // Logger
-        Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/log');
-        Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
+        Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/storage/log');
+        Subbly_Installer_Logger::get()->debug(sprintf('Initialize the Logger'));
+        Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
 
         // Error handler
         Subbly_Installer_ErrorHandler::register(true);
@@ -24,7 +23,7 @@ class Subbly_Installer
      */
     public function run()
     {
-        Subbly_Installer_Logger::debug(sprintf('run: %s', __METHOD__));
+        Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
 
         // Requirements
         $requirements = new Subbly_Installer_Requirements();
@@ -35,12 +34,14 @@ class Subbly_Installer
             return $this->showRequirementsView($requirements);
         }
 
-        // Download the archive
-        $archiver = new Subbly_Installer_CMSArchiver();
-        $archiver->downloadLatest();
-        $archiver->uncompress();
+        // Show the form for the setting values
+        return $this->showSettingsFormView();
 
-        Subbly_Installer_Logger::info(sprintf('What else?'));
+        // Install the CMS
+        $installer = new Subbly_Installer_Installer();
+        $installer->downloadLatest();
+        $installer->uncompress();
+        $installer->install();
     }
 
     /**
@@ -48,6 +49,9 @@ class Subbly_Installer
      */
     protected function showRequirementsView(Subbly_Installer_Requirements $requirements)
     {
+        return Subbly_Installer_View::render('requirements.html.php', array(
+            'requirements' => $requirements,
+        ));
     }
 
     /**
@@ -55,6 +59,7 @@ class Subbly_Installer
      */
     protected function showSettingsFormView()
     {
+        return Subbly_Installer_View::render('install.html.php', array('a' => 'b'));
     }
 
     /**
