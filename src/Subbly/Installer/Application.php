@@ -37,8 +37,19 @@ class Subbly_Installer_Application
             return $this->showRequirementsView($requirements);
         }
 
+        $form = new Subbly_Installer_FormValidator(
+            Subbly_Installer_View::request_input()
+        );
+
         // Show the form for the setting values
-        return $this->showSettingsFormView();
+        if (Subbly_Installer_View::request_input('submit') === null) {
+            return $this->showSettingsFormView($form);
+        }
+
+        // Check form values
+        if ($form->isValid()) {
+            return $this->showSettingsFormView($form);
+        }
 
         // Install the CMS
         $installer = new Subbly_Installer_Installer();
@@ -60,9 +71,11 @@ class Subbly_Installer_Application
     /**
      *
      */
-    protected function showSettingsFormView()
+    protected function showSettingsFormView(Subbly_Installer_FormValidator $form)
     {
-        return Subbly_Installer_View::render('install.html.php', array('a' => 'b'));
+        return Subbly_Installer_View::render('install.html.php', array(
+            'form' => $form,
+        ));
     }
 
     /**

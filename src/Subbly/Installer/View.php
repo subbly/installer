@@ -11,4 +11,22 @@ class Subbly_Installer_View
 
         print $content;
     }
+
+    /**
+     *
+     */
+    public static function request_input($key = null)
+    {
+        $inputs = array_merge($_GET, $_POST);
+
+        if ($key === null) {
+            return $inputs;
+        }
+
+        if (($value = Subbly_Installer_Util::get_array_value($inputs, $key)) !== null) {
+            return $value;
+        }
+
+        return null;
+    }
 }
