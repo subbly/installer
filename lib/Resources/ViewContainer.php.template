@@ -4,4 +4,34 @@ class Subbly_Installer_ViewContainer
 {
 
   /*** !PARSE_DELIMITER! DON'T REMOVE THIS LINE ***/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**********/
+
+  private static $_views = array(
+    'install.html.php' => '
+    ----- html content -----
+    ',
+  );
 }

@@ -129,6 +129,9 @@ class CompileCommand extends Command
 
         $this->installerFile->fwrite($content);
 
+        // TODO in the installer file rename all class by something like C1, C2.
+        //      In this way we win some characters.
+
         $this->fs->rename($this->installerFile->getRealPath(), $outputFilename);
     }
 
