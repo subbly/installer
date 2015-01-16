@@ -15,6 +15,9 @@ class Subbly_Installer_Application
         Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
 
         // Error handler
+        if (DEBUG !== true) {
+            Subbly_Installer_ErrorHandler::quiet();
+        }
         Subbly_Installer_ErrorHandler::register(true);
     }
 
