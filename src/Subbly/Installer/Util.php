@@ -36,4 +36,31 @@ class Subbly_Installer_Util
 
         return $filepath;
     }
+
+    /**
+     *
+     */
+    public static function get_array_value(array $array, $path)
+    {
+        if (is_string($path)) {
+            $paths = explode('.', $path);
+            $value = $array;
+
+            foreach ($paths as $key) {
+                if (array_key_exists($key, $value)) {
+                    $value = $value[$key];
+                } else {
+                    return;
+                }
+            }
+
+            return $value;
+        }
+
+        if (array_key_exists($path, $array)) {
+            return $array[$path];
+        }
+
+        return;
+    }
 }
