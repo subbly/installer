@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @deprecated MUST BE DELETED
+ */
 class Subbly_Installer_I18n
 {
     const DEFAULT_LOCALE = 'en';
@@ -22,12 +25,12 @@ class Subbly_Installer_I18n
             'form.user.email'    => 'Email',
             'form.user.password' => 'Password',
 
-            'form.db.title' => 'Database settings',
-            'form.db.host' => 'Database host',
-            'form.db.name' => 'Database name',
+            'form.db.title'    => 'Database settings',
+            'form.db.host'     => 'Database host',
+            'form.db.name'     => 'Database name',
             'form.db.username' => 'Database username',
             'form.db.password' => 'Database use password',
-            'form.db.prefix' => 'Tables prefix',
+            'form.db.prefix'   => 'Tables prefix',
 
             'form.submit' => 'Install!',
         ),
