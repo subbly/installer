@@ -11,19 +11,23 @@ class Subbly_Installer_ViewContainer
     /**
      *
      */
-    public static function renderTemplate($templateName, array $params = array())
+    public static function renderTemplate($templateName, array $params = array(), $layout = true)
     {
         self::$layoutParams = $params;
 
-        $params = array_merge($params, array(
-            '_page_template' => $templateName,
-            '_view_params'   => $params,
-        ));
+        if ($layout === true) {
+            $params = array_merge($params, array(
+                '_page_template' => $templateName,
+                '_view_params'   => $params,
+            ));
+
+            $templateName = 'layout.html.php';
+        }
 
         ob_start();
 
         extract($params);
-        require self::getTemplateFile('layout.html.php');
+        require self::getTemplateFile($templateName);
 
         return ob_get_clean();
     }

@@ -5,9 +5,9 @@ class Subbly_Installer_View
     /**
      *
      */
-    public static function render($templateName, array $params = array())
+    public static function render($templateName, array $params = array(), $layout = true)
     {
-        $content = Subbly_Installer_ViewContainer::renderTemplate($templateName, $params);
+        $content = Subbly_Installer_ViewContainer::renderTemplate($templateName, $params, $layout);
 
         print $content;
     }
