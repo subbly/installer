@@ -1,17 +1,5 @@
 <form action="" method="post">
 
-<?php if ($form->hasErrors()): ?>
-    <div class="errors">
-        <strong><?php echo Subbly_Installer_I18n::l('form.errors.title') ?></strong>
-
-        <ul>
-        <?php foreach ($form->getErrors() as $error): ?>
-            <li><?php echo Subbly_Installer_I18n::l(reset($error)) ?></li>
-        <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
-
     <h2><?php echo Subbly_Installer_I18n::l('form.generic.title') ?></h2>
 
     <input type="text" name="generic[shop_name]" value="<?= Subbly_Installer_View::request_input('generic.shop_name') ?>" placeholder="<?php echo Subbly_Installer_I18n::l('form.generic.shop_name') ?>">
