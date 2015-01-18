@@ -49,6 +49,9 @@ class Subbly_Installer_Requirements
         Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
         Subbly_Installer_Logger::get()->info(sprintf('Check the requirements'));
 
+        // TODO Check PHP
+
+        // Check des modules
         foreach ($this->modules as $groupName => $modulesGroup) {
             foreach ($modulesGroup as $module) {
                 if (!extension_loaded($module)) {

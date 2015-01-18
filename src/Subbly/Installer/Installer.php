@@ -58,7 +58,9 @@ class Subbly_Installer_Installer
     {
         // TODO execute what it must be
         //
-        //      * migrations
+        //      1. save setted configs
+        //      2. migrations
+        //      3. create the user
     }
 
     /**
