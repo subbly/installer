@@ -13,7 +13,7 @@ if ($form->hasErrors()) {
 } else {
     $response = array(
         'status'  => 'ok',
-        'content' => '',
+        'content' => null,
     );
 }
 
