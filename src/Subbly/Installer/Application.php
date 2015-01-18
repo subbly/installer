@@ -52,7 +52,7 @@ class Subbly_Installer_Application
             $installer = new Subbly_Installer_Installer();
             $installer->downloadLatest();
             $installer->uncompress();
-            $installer->install();
+            $installer->install($form);
         }
 
         return $this->showJSONView($form);
