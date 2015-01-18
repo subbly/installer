@@ -8,7 +8,7 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
     protected function loadStrategies()
     {
         return array(
-            'PharData',
+            // 'PharData', // FIXME unarchive with phar do encode problems
             'ZipArchive',
             // 'ExecutingCommand',
         );
