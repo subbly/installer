@@ -88,6 +88,36 @@ class BuildCommand extends Command
      */
     protected function compileViews()
     {
+        // Get views content
+        $finder = new Finder();
+        $finder
+            ->files()
+            ->in($this->getRootDir().'/src/Subbly/Installer/Resources/views')
+        ;
+
+        $views = array();
+
+        foreach ($finder as $file) {
+            $views[$file->getRelativePathname()] = @file_get_contents($file->getRealPath());
+        }
+
+        // Get common code into original ViewContainer file
+        $original = @file_get_contents($this->getRootDir().'/src/Subbly/Installer/ViewContainer.php');
+        $regexp   = '\/\/builder_delimiter_begin(.*)\/\/builder_delimiter_end';
+        $original = preg_match('/'.$regexp.'/ms', $original, $matches);
+        $original = $matches[1];
+
+        ob_start();
+
+        extract(array(
+            'views'         => $views,
+            'original_code' => $original,
+        ));
+        require $this->getRootDir().'/lib/Resources/ViewContainer.php.template';
+
+        $content = ob_get_clean();
+
+        $this->installerFile->fwrite($content);
     }
 
     /**
@@ -100,7 +130,8 @@ class BuildCommand extends Command
             ->files()
             ->in($this->getRootDir().'/src/')
             ->name('*.php')
-            ->notName('*.html.php')
+            ->notName('ViewContainer.php')
+            ->notPath('Subbly/Installer/Resources')
         ;
 
         foreach ($finder as $file) {

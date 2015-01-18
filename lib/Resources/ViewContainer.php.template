@@ -1,37 +1,28 @@
 <?php
 
+echo '
 class Subbly_Installer_ViewContainer
 {
+    private static $_views = array(
+';
+    foreach ($views as $path => $content) {
+        echo '
+        \''.$path.'\' => \''.base64_encode($content).'\',
+';
+    }
 
-  /*** !PARSE_DELIMITER! DON'T REMOVE THIS LINE ***/
+echo '
+    );
 
+';
 
+echo $original_code;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /**********/
-
-  private static $_views = array(
-    'install.html.php' => '
-    ----- html content -----
-    ',
-  );
+echo '
+    protected static function getTemplateContent($templateName, $params) {
+        extract($params);
+        $content = base64_decode(self::$_views[$templateName]);
+        return eval(\' ?>\'.$content.\'<?php \');
+    }
 }
+';
