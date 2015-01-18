@@ -3,7 +3,7 @@
 namespace Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
-use Console\Command\CompileCommand;
+use Console\Command\BuildCommand;
 
 class Application extends BaseApplication
 {
@@ -16,6 +16,6 @@ class Application extends BaseApplication
 
         parent::__construct('Subbly installer', \Subbly_Installer_Application::VERSION);
 
-        $this->add(new CompileCommand());
+        $this->add(new BuildCommand());
     }
 }

@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class CompileCommand extends Command
+class BuildCommand extends Command
 {
     protected $installerFile;
 
@@ -17,7 +17,7 @@ class CompileCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('installer:compile')
+            ->setName('installer:build')
             ->setDescription('Compile the Subbly Installer')
         ;
     }

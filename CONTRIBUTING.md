@@ -1,10 +1,10 @@
 How to contribute
 =================
 
-## Compile this installer
+## Build this installer
 
 ```bash
-$ bin/console installer:compile
+$ bin/console installer:build
 ```
 
 ## Develop the installer
