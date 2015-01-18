@@ -22,8 +22,8 @@
 
     "autoload": {
         "psr-0": {
-            "": "lib/",
-            "Subbly_": "src/"
+            "Console": "lib/",
+            "": "src/"
         }
     }
 }
