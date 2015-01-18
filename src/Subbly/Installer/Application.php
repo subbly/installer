@@ -2,7 +2,7 @@
 
 class Subbly_Installer_Application
 {
-    const VERSION = '0.1.0-dev';
+    const VERSION = '0.1.0.alpha1';
 
     /**
      * The constructor
