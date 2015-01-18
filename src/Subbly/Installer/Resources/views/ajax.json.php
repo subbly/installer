@@ -18,4 +18,7 @@ if ($form->hasErrors()) {
 }
 
 header('Content-Type: application/json');
-print json_encode($response);
+echo json_encode($response);
+
+// Don't remove the line after!
+?>

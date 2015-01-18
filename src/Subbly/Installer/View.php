@@ -9,7 +9,7 @@ class Subbly_Installer_View
     {
         $content = Subbly_Installer_ViewContainer::renderTemplate($templateName, $params, $layout);
 
-        print $content;
+        echo $content;
     }
 
     /**

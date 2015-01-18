@@ -2,7 +2,7 @@
 
 class Subbly_Installer_ViewContainer
 {
-    /*** !PARSE_DELIMITER! !BEGIN! DON'T REMOVE THIS LINE ***/
+    //builder_delimiter_begin
 
     private static $layoutParams = array();
 
@@ -22,7 +22,7 @@ class Subbly_Installer_ViewContainer
             $templateName = 'layout.html.php';
         }
 
-        return self::$getTemplateContent($templateName, $params);
+        return self::getTemplateContent($templateName, $params);
     }
 
     /**
@@ -34,10 +34,10 @@ class Subbly_Installer_ViewContainer
             $params = self::$layoutParams;
         }
 
-        return self::$getTemplateContent($templateName, $params);
+        return self::getTemplateContent($templateName, $params);
     }
 
-    /*** !PARSE_DELIMITER! !END! DON'T REMOVE THIS LINE ***/
+    //builder_delimiter_end
 
     /**
      *
