@@ -10,7 +10,7 @@ class Subbly_Installer_Application
     public function __construct()
     {
         // Logger
-        Subbly_Installer_Logger::setLogDirectory(BASEDIR.'/storage/log');
+        Subbly_Installer_Logger::setLogDirectory(BASEDIR);
         Subbly_Installer_Logger::get()->debug(sprintf('Initialize the Logger'));
         Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
 
