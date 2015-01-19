@@ -92,13 +92,9 @@ class Subbly_Installer_FormValidator
         if (!$this->getData('db.password')) {
             $this->addError('db.password', 'form.errors.db.password.missing');
         }
-        // db.prefix
-        if (!$this->getData('db.prefix')) {
-            $this->addError('db.prefix', 'form.errors.db.prefix.missing');
-        }
 
         if (($errorMessage = $this->isDBConnectionOK()) !== true) {
-            // $this->addError('db', 'form.errors.db{'.$errorMessage.'}');
+            $this->addError('db', 'form.errors.db{'.$errorMessage.'}');
         }
     }
 
