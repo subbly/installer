@@ -10,10 +10,15 @@ if ($form instanceof Subbly_Installer_FormValidator && $form->hasErrors()) {
         'status'  => 'error',
         'content' => $form->getErrors(),
     );
+} elseif (!empty($errorMessage)) {
+    $response = array(
+        'status'  => 'error',
+        'content' => $errorMessage,
+    );
 } else {
     $response = array(
         'status'  => 'ok',
-        'content' => $errorMessage ?: null,
+        'content' => null,
     );
 }
 
