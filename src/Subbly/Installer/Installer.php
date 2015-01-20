@@ -63,7 +63,7 @@ class Subbly_Installer_Installer
         //      3. create the user
 
         // 1. Save setted configs
-        $configFile = BASEDIR.'/config/database.yml';
+        $configFile = BASEDIR.'/config/config.yml';
         $yaml = new Alchemy_Component_Yaml_Yaml();
         $settings = $yaml->load($configFile);
 
