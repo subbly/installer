@@ -25,7 +25,7 @@ class Subbly_Installer_Installer
         $this->archiveFile = Subbly_Installer_Util::download($cmsVersion->download_url);
 
         if (!self::verifyChecksum($this->archiveFile, $cmsVersion->checksum)) {
-            throw new ErrorException('TODO'); // TODO
+            throw new Subbly_Installer_HTTPException(sprintf('Checksum not valid!')); // TODO
         }
     }
 
