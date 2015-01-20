@@ -5,13 +5,13 @@
 
 
 <ul>
-    <?php foreach ($requirements->getInstalledModules() as $groupModules=>$modules): ?>
+    <?php foreach ($requirements->getInstalledModules() as $groupModules => $modules): ?>
         <li><?php print_r($modules) ?></li>
     <?php endforeach; ?>
 </ul>
 
 <ul>
-    <?php foreach ($requirements->getMissingModules() as $groupModules=>$modules): ?>
+    <?php foreach ($requirements->getMissingModules() as $groupModules => $modules): ?>
     <li><?php print_r($modules) ?></li>
     <?php endforeach; ?>
 </ul>

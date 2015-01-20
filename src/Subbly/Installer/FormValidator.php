@@ -70,13 +70,13 @@ class Subbly_Installer_FormValidator
         // user.email
         if (!$this->getData('user.email')) {
             $this->addError('user.email', 'form.errors.user.email.missing');
-        } else if (filter_var($this->getData('user.email'), FILTER_VALIDATE_EMAIL) === false) {
+        } elseif (filter_var($this->getData('user.email'), FILTER_VALIDATE_EMAIL) === false) {
             $this->addError('user.email', 'form.errors.user.email.invalid');
         }
         // user.password
         if (!$this->getData('user.password')) {
             $this->addError('user.password', 'form.errors.user.password.missing');
-        } else if (strlen($this->getData('user.password')) < 8) {
+        } elseif (strlen($this->getData('user.password')) < 8) {
             $this->addError('user.password', 'form.errors.user.password.too_short');
         }
 
@@ -119,6 +119,7 @@ class Subbly_Installer_FormValidator
 
         try {
             $dbh = new PDO($dsn, $this->getData('db.username'), $this->getData('db.password'));
+
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();

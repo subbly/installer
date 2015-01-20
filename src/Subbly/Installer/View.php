@@ -27,6 +27,6 @@ class Subbly_Installer_View
             return $value;
         }
 
-        return null;
+        return;
     }
 }

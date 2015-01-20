@@ -57,11 +57,9 @@ class Subbly_Installer_Application
             }
 
             return $this->showJSONView($form);
-
         } catch (Subbly_Installer_HTTPException $e) {
             return $this->showJSONView(null, $e->getMessage());
         }
-
     }
 
     /**

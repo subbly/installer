@@ -71,8 +71,8 @@ class Subbly_Installer_Logger
     private static $instance;
 
     /**
-    *
-    */
+     *
+     */
     public static function get()
     {
         return self::getInstance();
