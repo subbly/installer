@@ -17,11 +17,15 @@ class Subbly_Installer_Installer
     public function downloadLatest()
     {
         $apiResponse = Subbly_Installer_Util::call_json(HANGAR_API_CMSLATEST);
-        $cmsVersion = $apiResponse->response->cms_version;
+
+        if ($apiResponse === null) {
+            throw new Subbly_Installer_HTTPException(sprintf('Can not upload the hangar api! URL: %s', HANGAR_API_CMSLATEST));
+        }
 
         // TODO check if there is a downloaded file. And if there is, look the checksum to be sure it's the latest version and the good name. If ok continue, else download again
 
         // Download
+        $cmsVersion        = $apiResponse->response->cms_version;
         $this->archiveFile = Subbly_Installer_Util::download($cmsVersion->download_url);
 
         if (!self::verifyChecksum($this->archiveFile, $cmsVersion->checksum)) {
@@ -52,20 +56,18 @@ class Subbly_Installer_Installer
     }
 
     /**
+     * Install the CMS
      *
+     * @param Subbly_Installer_FormValidator $form
      */
     public function install(Subbly_Installer_FormValidator $form)
     {
-        // TODO execute what it must be
-        //
-        //      1. save setted configs
-        //      2. migrations
-        //      3. create the user
-
         // 1. Save setted configs
         $configFile = BASEDIR.'/config/config.yml';
         $yaml = new Alchemy_Component_Yaml_Yaml();
         $settings = $yaml->load($configFile);
+
+        $settings['app']['key'] = md5(microtime().rand());
 
         $settings['database']['host'] = $form->getData('db.host');
         $settings['database']['name'] = $form->getData('db.name');
@@ -77,13 +79,16 @@ class Subbly_Installer_Installer
         file_put_contents($configFile, $yaml->dump($settings, 4, 0));
 
         // 2. Execute migrations
-        // TODO
+        $this->execCommand('php', array('artisan', 'migrate', '--package=cartalyst/sentry'));
+        $this->execCommand('php', array('artisan', 'migrate'));
+        // $this->execCommand('php', array('artisan', 'db:seed'));
 
         // 3. Create the user
-        // TODO
+        $this->execCommand('php', array('artisan', 'migrate'));
 
         // 4. Remove archive file
-        // TODO
+        @unlink($this->archiveFile);
+        @rmdir(dirname($this->archiveFile));
     }
 
     /**
@@ -108,9 +113,8 @@ class Subbly_Installer_Installer
      */
     protected function getMimeType($filename)
     {
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $finfo    = finfo_open(FILEINFO_MIME_TYPE);
         $mimeType = finfo_file($finfo, $filename);
-
         finfo_close($finfo);
 
         return $mimeType;
@@ -121,10 +125,36 @@ class Subbly_Installer_Installer
      */
     protected function execCommand($bin, array $params = array())
     {
+        $descriptorspec = array(
+            0 => array("pipe", "r"),
+            1 => array("pipe", "w"),
+            2 => array("pipe", "w"),
+        );
+
+        // Don't save the password into the log file!
+        Subbly_Installer_Logger::get()->debug(sprintf('Execute command "%s"', $bin));
+
         $command = $bin;
 
         foreach ($params as $param) {
             $command .= ' '.$param;
+        }
+
+        $process = proc_open($command, $descriptorspec, $pipes, null, null);
+
+        if (is_resource($process)) {
+            if (($error = stream_get_contents($pipes[2])) !== null) {
+                throw new Subbly_Installer_HTTPException(sprintf('Error while executing "%s" - "%s"',
+                    $command,
+                    $error
+                ));
+            }
+
+            fclose($pipes[0]);
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+
+            return proc_close($process);
         }
 
         return shell_exec($command);
