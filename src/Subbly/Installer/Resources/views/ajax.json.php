@@ -5,7 +5,7 @@ $response = array(
     'content' => 'Unkonown error',
 );
 
-if ($form->hasErrors()) {
+if ($form instanceof Subbly_Installer_FormValidator && $form->hasErrors()) {
     $response = array(
         'status'  => 'error',
         'content' => $form->getErrors(),
@@ -13,7 +13,7 @@ if ($form->hasErrors()) {
 } else {
     $response = array(
         'status'  => 'ok',
-        'content' => null,
+        'content' => $errorMessage ?: null,
     );
 }
 
