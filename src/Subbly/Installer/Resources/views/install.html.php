@@ -3,6 +3,7 @@
     <h2><?php echo Subbly_Installer_I18n::l('form.generic.title') ?></h2>
 
     <input type="text" name="generic[shop_name]" value="" placeholder="<?php echo Subbly_Installer_I18n::l('form.generic.shop_name') ?>">
+    <input type="text" name="generic[admin_baseurl]" value="" placeholder="<?php echo Subbly_Installer_I18n::l('form.admin_baseurl') ?>">
 
     <h2><?php echo Subbly_Installer_I18n::l('form.user.title') ?></h2>
 

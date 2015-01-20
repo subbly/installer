@@ -62,6 +62,10 @@ class Subbly_Installer_FormValidator
         if (!$this->getData('generic.shop_name')) {
             $this->addError('generic.shop_name', 'form.errors.generic.shop_name.missing');
         }
+        // generic.admin_baseurl
+        if (!$this->getData('generic.admin_baseurl')) {
+            $this->addError('generic.admin_baseurl', 'form.errors.generic.admin_baseurl.missing');
+        }
 
         // user.email
         if (!$this->getData('user.email')) {
