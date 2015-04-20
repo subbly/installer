@@ -1,12 +1,21 @@
 How to contribute
 =================
 
-## Build this installer
+## Prerequisites
 
-```bash
-$ bin/console installer:build
+* PHP >= 5.4
+* [composer](https://getcomposer.org/)
+
+## Launch it
+
+```sh
+$ php -S localhost:8000 install_dev.php
 ```
 
-## Develop the installer
+And now just call [`http://localhost:8000`](http://localhost:8000).
 
-Do your code and call **`installer_dev.php`** instead of `installer.php` to test your code.
+## Build the installer
+
+```sh
+$ bin/console installer:build
+```
