@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Console\Utility;
 
 class BuildCommand extends Command
 {
@@ -39,11 +40,11 @@ class BuildCommand extends Command
         $this->output->writeln(' > <comment>Compile classes</comment>');
         $this->compileClasses(); // Get all php Class files into src/ and past the content into the export file
 
-        $this->output->writeln(' > <comment>Cleanup</comment>');
-        $this->cleanup();
-
         $this->output->writeln(' > <comment>Finalize the compilation</comment>');
         $this->finalize($finalFilename);
+
+        $this->output->writeln(' > <comment>Cleanup</comment>');
+        $this->cleanup();
     }
 
     /**
@@ -140,15 +141,6 @@ class BuildCommand extends Command
     }
 
     /**
-     * Cleanup the installer php file
-     */
-    protected function cleanup()
-    {
-        // TODO Try to uglify the php
-        //       - Remove comments
-    }
-
-    /**
      * Finaliaze the compilation
      */
     protected function finalize($outputFilename)
@@ -163,7 +155,23 @@ class BuildCommand extends Command
         // TODO in the installer file rename all class by something like C1, C2.
         //      In this way we win some characters.
 
-        $this->fs->rename($this->installerFile->getRealPath(), $outputFilename);
+        $file       = new \SplFileInfo($outputFilename);
+        $fileObject = $file->openFile('a+');
+
+        $content = @file_get_contents($this->installerFile->getRealPath());
+        $content = Utility::compressPHPCode($content);
+
+        $fileObject->fwrite($content);
+    }
+
+    /**
+     * Cleanup the installer php file
+     */
+    protected function cleanup()
+    {
+        // TODO Try to uglify the php
+        //       - Remove comments
+        $this->fs->remove($this->installerFile->getRealPath());
     }
 
     /**
@@ -181,16 +189,16 @@ class BuildCommand extends Command
 
         $content = @file_get_contents($file->getRealPath());
 
+        // // Remove comments
+        // $content = preg_replace('!/\*.*?\*/!s', '', $content);
+        // $content = preg_replace('/\n\s*\n/', "\n", $content);
+        // $content = preg_replace("/^\s*\/\/.+$/m", '', $content);
+        //
+        // // Remove empty lines
+        // $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
+
         // Remove first line "<?php"
-        $content = preg_replace("/^.+\n/", '', $content);
-
-        // Remove comments
-        $content = preg_replace('!/\*.*?\*/!s', '', $content);
-        $content = preg_replace('/\n\s*\n/', "\n", $content);
-        $content = preg_replace("/^\s*\/\/.+$/m", '', $content);
-
-        // Remove empty lines
-        $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
+        $content = str_replace("<?php", '', $content);
 
         return $content;
     }
