@@ -411,12 +411,88 @@ th {
   padding: 0;
 }
 
+html body {
+  background: #202124;
+  color: white;
+}
+html body a {
+  outline: 0;
+  text-decoration: none;
+}
+html body a:hover, html body a:active, html body a:focus {
+  outline: 0;
+  text-decoration: none;
+}
+html body #app-aside {
+  position: fixed;
+  margin: 200px 0 0 15%;
+}
+html body #app-content {
+  position: relative;
+  margin: 0 auto 0 25%;
+}
 html body .full {
   position: relative;
   width: 100%;
   height: 100vh;
 }
+html body .vertical-center-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+}
 html body .container {
   max-width: 960px;
   margin: 0 auto;
+}
+html body .subbly-form fieldset {
+  border: none;
+}
+html body .subbly-form .fields-group {
+  margin-bottom: 30px;
+}
+html body .subbly-form .fields-group input,
+html body .subbly-form .fields-group textarea,
+html body .subbly-form .fields-group select {
+  display: block;
+}
+html body .subbly-form label {
+  margin-bottom: 10px;
+  color: #cbcbcb;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+html body .subbly-form input,
+html body .subbly-form textarea,
+html body .subbly-form select,
+html body .subbly-form .field-options {
+  font-weight: 300;
+  font-size: 48px;
+  outline: 0;
+  color: white;
+}
+html body .subbly-form input[type="text"],
+html body .subbly-form input[type="search"],
+html body .subbly-form input[type="url"],
+html body .subbly-form input[type="password"],
+html body .subbly-form input[type="email"] {
+  background: transparent;
+  border: none;
+}
+html body .button,
+html body .subbly-form input[type="submit"].button {
+  padding: 20px 50px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background: #4aa071;
+  color: white;
+}
+html body .button.button-rounded,
+html body .subbly-form input[type="submit"].button.button-rounded {
+  border-radius: 50px;
 }
