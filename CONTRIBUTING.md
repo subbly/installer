@@ -6,6 +6,12 @@ How to contribute
 * PHP >= 5.4
 * [composer](https://getcomposer.org/)
 
+### Install the dependencies
+
+```sh
+$ composer install
+```
+
 ## Launch it
 
 ```sh
