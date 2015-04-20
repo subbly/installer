@@ -39,8 +39,29 @@ class Subbly_Installer_I18n
             'form.submit' => 'Install!',
         ),
         'fr' => array(
-            // TODO
-            // 'form.user.title' => 'Utilisateur',
+            // requirements.php
+            'requirements.title' => 'Prérequis',
+            'requirements.text'  => 'Certains modules PHP sont introuvables :/.',
+
+            // install.php
+            'form.admin.base_url'     => 'URL de base de l\'interface d\'administration (/admin)',
+
+            // install.php
+            'form.generic.title'     => 'Paramètres',
+            'form.generic.shop_name' => 'Nom de la boutique',
+
+            'form.user.title'    => 'Paramètres utilisateur (administrateur)',
+            'form.user.email'    => 'Adresse mail',
+            'form.user.password' => 'Mot de passe',
+
+            'form.db.title'    => 'Paramètres de base de données',
+            'form.db.host'     => 'Hôte de la base',
+            'form.db.name'     => 'Nom de la base',
+            'form.db.username' => 'Nom d\'utilisateur',
+            'form.db.password' => 'Mot de passe utilisateur',
+            'form.db.prefix'   => 'Préfixe des tables',
+
+            'form.submit' => 'Installer !',
         ),
     );
 
