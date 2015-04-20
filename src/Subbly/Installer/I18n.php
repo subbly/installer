@@ -18,15 +18,19 @@ class Subbly_Installer_I18n
             'requirements.text'  => 'Some php modules are missing :/.',
 
             // install.php
-            'form.admin.base_url'     => 'Administration Base URL (/admin)',
-
-            // install.php
-            'form.generic.title'     => 'Common settings',
-            'form.generic.shop_name' => 'Shop name',
+            'form.generic.title'                    => 'Welcome, install your lovely shop',
+            'form.generic.languages.label'          => 'Installation language',
+            'form.generic.languages.english'        => 'English',
+            'form.generic.languages.french'         => 'Français',
+            'form.generic.shop_name.label'          => 'Name of your shop',
+            'form.generic.shop_name.placeholder'    => 'My shop',
+            'form.generic.admin.base_url.label'     => 'Administration Base URL (/admin)',
+            'form.generic.links.next'               => 'Start the aventure',
 
             'form.user.title'    => 'User settings',
             'form.user.email'    => 'Email',
             'form.user.password' => 'Password',
+            'form.user.links.next' => 'Next',
 
             'form.db.title'    => 'Database settings',
             'form.db.host'     => 'Database host',
@@ -35,7 +39,7 @@ class Subbly_Installer_I18n
             'form.db.password' => 'Database use password',
             'form.db.prefix'   => 'Tables prefix',
 
-            'form.submit' => 'Install!',
+            'form.submit' => 'Finish',
         ),
         'fr' => array(
             // requirements.php
@@ -43,15 +47,19 @@ class Subbly_Installer_I18n
             'requirements.text'  => 'Certains modules PHP sont introuvables :/.',
 
             // install.php
-            'form.admin.base_url'     => 'URL de base de l\'interface d\'administration (/admin)',
-
-            // install.php
-            'form.generic.title'     => 'Paramètres',
-            'form.generic.shop_name' => 'Nom de la boutique',
+            'form.generic.title'                    => 'Bienvenue, installez votre adorable boutique',
+            'form.generic.languages.label'          => 'Langue d\'installation',
+            'form.generic.languages.english'        => 'English',
+            'form.generic.languages.french'         => 'Français',
+            'form.generic.shop_name.label'          => 'Nom de votre boutique',
+            'form.generic.shop_name.placeholder'    => 'Ma boutique',
+            'form.generic.admin.base_url.label'     => 'URL de base de l\'interface d\'administration (/admin)',
+            'form.generic.links.next'               => 'Démarrer l\'aventure',
 
             'form.user.title'    => 'Paramètres utilisateur (administrateur)',
             'form.user.email'    => 'Adresse mail',
             'form.user.password' => 'Mot de passe',
+            'form.user.links.next' => 'Etape suivante',
 
             'form.db.title'    => 'Paramètres de base de données',
             'form.db.host'     => 'Hôte de la base',
@@ -60,7 +68,7 @@ class Subbly_Installer_I18n
             'form.db.password' => 'Mot de passe utilisateur',
             'form.db.prefix'   => 'Préfixe des tables',
 
-            'form.submit' => 'Installer !',
+            'form.submit' => 'Terminer',
         ),
     );
 
