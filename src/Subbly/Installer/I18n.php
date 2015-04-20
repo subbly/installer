@@ -18,6 +18,9 @@ class Subbly_Installer_I18n
             'requirements.text'  => 'Some php modules are missing :/.',
 
             // install.php
+            'form.admin.base_url'     => 'Administration Base URL (/admin)',
+
+            // install.php
             'form.generic.title'     => 'Common settings',
             'form.generic.shop_name' => 'Shop name',
 
