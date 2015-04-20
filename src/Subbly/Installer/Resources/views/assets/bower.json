@@ -1,0 +1,22 @@
+{
+  "name": "subbly-installer",
+  "version": "1.0.0",
+  "authors": [
+    "Florent Schildknecht <contact@florentschildknecht.com>"
+  ],
+  "description": "Subbly CMS installer template",
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "smooth-scroll.js": "*",
+    "normalize-scss": "~3.0.2"
+  }
+}
