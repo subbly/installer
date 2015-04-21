@@ -1,5 +1,5 @@
 // Gulp and utils
-var gulp         = require('gulp'),
+var gulp       = require('gulp'),
   gutil        = require('gulp-util'),
   size         = require('gulp-size'),
   rename       = require('gulp-rename'),
@@ -8,7 +8,10 @@ var gulp         = require('gulp'),
   sass         = require('gulp-ruby-sass'),
   minifycss    = require('gulp-minify-css'),
   prefix       = require('gulp-autoprefixer'),
+  concat       = require('gulp-concat'),
+  uglify       = require('gulp-uglify'),
   paths        = {
+    bower: 'bower_components/',
     scss: 'sass/',
     css: 'css/',
     js: 'js/'
@@ -43,19 +46,46 @@ gulp.task('styles', function () {
     }));
 });
 
+// Scripts
+gulp.task('scripts', function () {
+  console.log([
+      paths.bower + 'jquery/dist/jquery.js',
+      paths.js + 'main.js'
+    ])
+  return gulp.src([
+      paths.bower + 'jquery/dist/jquery.js',
+      paths.js + 'main.js'
+    ])
+    .pipe(concat('app.js'))
+    .on('error', gutil.log)
+    .pipe(gulp.dest(paths.js))
+    .pipe(uglify())
+    .on('error', gutil.log)
+    .pipe(size())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(paths.js))
+    .pipe(notify({
+      message: '[Scripts] <%= file.relative %> finished'
+    }));
+});
+
 // Watch
 gulp.task('watch', function () {
   // Watch .scss files
   gulp.watch(paths.scss + '*.scss', ['styles']);
+  // Watch .js files
+  gulp.watch(paths.js + '*.js', ['scripts']);
 });
 
 // Serve
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['styles', 'scripts'], function () {
   gulp.start('watch');
 });
 
 // Build
-gulp.task('build', ['styles']);
+gulp.task('build', ['styles', 'scripts']);
 
 // Default task
 gulp.task('default', ['serve']);

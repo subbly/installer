@@ -1,12 +1,14 @@
-@import "variables";
 @import "fonts";
+@import "variables";
 
 @import "../bower_components/normalize-scss/normalize";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
 html {
     body {
         background: $ui-background;
         color: $ui-color;
+        font-family: $body-font-family;
         a {
             outline: 0;
             text-decoration: none;
@@ -19,11 +21,15 @@ html {
         }
         #app-aside {
             position: fixed;
-            margin: 200px 0 0 15%;
+            top: 50%;
+            height: $columns-content-height;
+            margin-top: -($columns-content-height / 2);
+            #app-title {
+                margin: 0;
+            }
         }
         #app-content {
             position: relative;
-            margin: 0 auto 0 25%;
         }
         .full {
             position: relative;
@@ -35,7 +41,8 @@ html {
             top: 50%;
             left: 0;
             width: 100%;
-            transform: translate3d(0, -50%, 0);
+            height: $columns-content-height;
+            margin-top: -($columns-content-height / 2);
         }
         .container {
             max-width: 960px;
@@ -44,6 +51,9 @@ html {
         .subbly-form {
             fieldset {
                 border: none;
+            }
+            .form-subtitle {
+                margin: 0 auto 25px auto;
             }
             .fields-group {
                 margin-bottom: 30px;
