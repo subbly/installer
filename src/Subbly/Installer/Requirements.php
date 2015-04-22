@@ -32,7 +32,7 @@ class Subbly_Installer_Requirements
     }
 
     /**
-     * Check if the requirements are ok or not
+     * Check if the requirements are ok or not.
      *
      * @return boolean
      */

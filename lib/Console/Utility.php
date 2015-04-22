@@ -5,7 +5,6 @@ namespace Console;
 class Utility
 {
     /**
-     *
      * @param string $src
      *
      * @return string
@@ -45,8 +44,8 @@ class Utility
             T_SL_EQUAL,                 // <<=
             T_SR_EQUAL,                 // >>=
         );
-        if(is_file($src)) {
-            if(!$src = file_get_contents($src)) {
+        if (is_file($src)) {
+            if (!$src = file_get_contents($src)) {
                 return false;
             }
         }
@@ -58,29 +57,29 @@ class Utility
         $ih = false; // in HEREDOC
         $ls = "";    // last sign
         $ot = null;  // open tag
-        for($i = 0; $i < $c; $i++) {
+        for ($i = 0; $i < $c; $i++) {
             $token = $tokens[$i];
-            if(is_array($token)) {
+            if (is_array($token)) {
                 list($tn, $ts) = $token; // tokens: number, string, line
                 $tname = token_name($tn);
-                if($tn == T_INLINE_HTML) {
+                if ($tn == T_INLINE_HTML) {
                     $new .= $ts;
                     $iw = false;
                 } else {
-                    if($tn == T_OPEN_TAG) {
-                        if(strpos($ts, " ") || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
+                    if ($tn == T_OPEN_TAG) {
+                        if (strpos($ts, " ") || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
                             $ts = rtrim($ts);
                         }
                         $ts .= " ";
                         $new .= $ts;
                         $ot = T_OPEN_TAG;
                         $iw = true;
-                    } elseif($tn == T_OPEN_TAG_WITH_ECHO) {
+                    } elseif ($tn == T_OPEN_TAG_WITH_ECHO) {
                         $new .= $ts;
                         $ot = T_OPEN_TAG_WITH_ECHO;
                         $iw = true;
-                    } elseif($tn == T_CLOSE_TAG) {
-                        if($ot == T_OPEN_TAG_WITH_ECHO) {
+                    } elseif ($tn == T_CLOSE_TAG) {
+                        if ($ot == T_OPEN_TAG_WITH_ECHO) {
                             $new = rtrim($new, "; ");
                         } else {
                             $ts = " ".$ts;
@@ -88,43 +87,42 @@ class Utility
                         $new .= $ts;
                         $ot = null;
                         $iw = false;
-                    } elseif(in_array($tn, $IW)) {
+                    } elseif (in_array($tn, $IW)) {
                         $new .= $ts;
                         $iw = true;
-                    } elseif($tn == T_CONSTANT_ENCAPSED_STRING
-                           || $tn == T_ENCAPSED_AND_WHITESPACE)
-                    {
-                        if($ts[0] == '"') {
+                    } elseif ($tn == T_CONSTANT_ENCAPSED_STRING
+                           || $tn == T_ENCAPSED_AND_WHITESPACE) {
+                        if ($ts[0] == '"') {
                             $ts = addcslashes($ts, "\n\t\r");
                         }
                         $new .= $ts;
                         $iw = true;
-                    } elseif($tn == T_WHITESPACE) {
+                    } elseif ($tn == T_WHITESPACE) {
                         $nt = @$tokens[$i+1];
-                        if(!$iw && (!is_string($nt) || $nt == '$') && !in_array($nt[0], $IW)) {
+                        if (!$iw && (!is_string($nt) || $nt == '$') && !in_array($nt[0], $IW)) {
                             $new .= " ";
                         }
                         $iw = false;
-                    } elseif($tn == T_START_HEREDOC) {
+                    } elseif ($tn == T_START_HEREDOC) {
                         $new .= "<<<S\n";
                         $iw = false;
                         $ih = true; // in HEREDOC
-                    } elseif($tn == T_END_HEREDOC) {
+                    } elseif ($tn == T_END_HEREDOC) {
                         $new .= "S;";
                         $iw = true;
                         $ih = false; // in HEREDOC
-                        for($j = $i+1; $j < $c; $j++) {
-                            if(is_string($tokens[$j]) && $tokens[$j] == ";") {
+                        for ($j = $i+1; $j < $c; $j++) {
+                            if (is_string($tokens[$j]) && $tokens[$j] == ";") {
                                 $i = $j;
                                 break;
-                            } else if($tokens[$j][0] == T_CLOSE_TAG) {
+                            } elseif ($tokens[$j][0] == T_CLOSE_TAG) {
                                 break;
                             }
                         }
-                    } elseif($tn == T_COMMENT || $tn == T_DOC_COMMENT) {
+                    } elseif ($tn == T_COMMENT || $tn == T_DOC_COMMENT) {
                         $iw = true;
                     } else {
-                        if(!$ih) {
+                        if (!$ih) {
                             // $ts = strtolower($ts);
                         }
                         $new .= $ts;
@@ -133,36 +131,35 @@ class Utility
                 }
                 $ls = "";
             } else {
-                if(($token != ";" && $token != ":") || $ls != $token) {
+                if (($token != ";" && $token != ":") || $ls != $token) {
                     $new .= $token;
                     $ls = $token;
                 }
                 $iw = true;
             }
         }
+
         return $new;
     }
 
     /**
-     *
-     *
      * @param string $src
      *
      * @return string
      *
      * @see http://stackoverflow.com/questions/6225351/how-to-minify-php-page-html-output
      */
-    static public function compressHTMLCode($html)
+    public static function compressHTMLCode($html)
     {
         return preg_replace(array(
                 '/\>[^\S ]+/s',  // strip whitespaces after tags, except space
                 '/[^\S ]+\</s',  // strip whitespaces before tags, except space
-                '/(\s)+/s'       // shorten multiple whitespace sequences
+                '/(\s)+/s',       // shorten multiple whitespace sequences
             ),
             array(
                 '>',
                 '<',
-                '\\1'
+                '\\1',
             ),
             $html
         );

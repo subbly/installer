@@ -18,14 +18,14 @@ abstract class Subbly_Installer_Unarchiver_Unarchiver
     }
 
     /**
-     * Load the unarchive strategies
+     * Load the unarchive strategies.
      *
      * @return array
      */
     abstract protected function loadStrategies();
 
     /**
-     * Uncompress the archive
+     * Uncompress the archive.
      *
      * @param string $targetDir
      *

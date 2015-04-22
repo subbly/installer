@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Inspired by "katzgrau/klogger" package
+ * Inspired by "katzgrau/klogger" package.
  *
  * @see https://github.com/katzgrau/KLogger
  *
@@ -19,19 +19,22 @@ class Subbly_Installer_Logger
     const DEBUG = 'debug';
 
     /**
-     * Dir for the log files
+     * Dir for the log files.
+     *
      * @var string
      */
     private static $logDirectory = null;
 
     /**
-     * Path to the log file
+     * Path to the log file.
+     *
      * @var string
      */
     private $logFilePath = null;
 
     /**
-     * Current minimum logging threshold
+     * Current minimum logging threshold.
+     *
      * @var integer
      */
     private $logLevelThreshold = self::DEBUG;
@@ -48,19 +51,22 @@ class Subbly_Installer_Logger
     );
 
     /**
-     * This holds the file handle for this instance's log file
+     * This holds the file handle for this instance's log file.
+     *
      * @var resource
      */
     private $fileHandle = null;
 
     /**
-     * Valid PHP date() format string for log timestamps
+     * Valid PHP date() format string for log timestamps.
+     *
      * @var string
      */
     private $dateFormat = 'Y-m-d G:i:s.u';
 
     /**
-     * Octal notation for default permissions of the log file
+     * Octal notation for default permissions of the log file.
+     *
      * @var integer
      */
     private $defaultPermissions = 0777;
@@ -91,11 +97,10 @@ class Subbly_Installer_Logger
     }
 
     /**
-     * Class constructor
+     * Class constructor.
      *
-     * @param  string  $logDirectory      File path to the logging directory
-     * @param  integer $logLevelThreshold The LogLevel Threshold
-     * @return void
+     * @param string  $logDirectory      File path to the logging directory
+     * @param integer $logLevelThreshold The LogLevel Threshold
      */
     private function __construct($logDirectory, $logLevelThreshold = self::DEBUG)
     {
@@ -118,7 +123,7 @@ class Subbly_Installer_Logger
     }
 
     /**
-     * Class destructor
+     * Class destructor.
      */
     public function __destruct()
     {
@@ -128,7 +133,7 @@ class Subbly_Installer_Logger
     }
 
     /**
-     * Sets the date format used by all instances of KLogger
+     * Sets the date format used by all instances of KLogger.
      *
      * @param string $dateFormat Valid format string for date()
      */
@@ -138,7 +143,7 @@ class Subbly_Installer_Logger
     }
 
     /**
-     * Sets the date format used by all instances of KLogger
+     * Sets the date format used by all instances of KLogger.
      *
      * @param string $dateFormat Valid format string for date()
      */
@@ -150,10 +155,9 @@ class Subbly_Installer_Logger
     /**
      * Logs with an arbitrary level.
      *
-     * @param  mixed  $level
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param mixed  $level
+     * @param string $message
+     * @param array  $context
      */
     public function log($level, $message, array $context = array())
     {
@@ -165,10 +169,9 @@ class Subbly_Installer_Logger
     }
 
     /**
-     * Writes a line to the log without prepending a status or timestamp
+     * Writes a line to the log without prepending a status or timestamp.
      *
-     * @param  string $line Line to write to the log
-     * @return void
+     * @param string $line Line to write to the log
      */
     public function write($message)
     {
@@ -182,9 +185,10 @@ class Subbly_Installer_Logger
     /**
      * Formats the message for logging.
      *
-     * @param  string $level   The Log Level of the message
-     * @param  string $message The message to log
-     * @param  array  $context The context
+     * @param string $level   The Log Level of the message
+     * @param string $message The message to log
+     * @param array  $context The context
+     *
      * @return string
      */
     private function formatMessage($level, $message, $context)
@@ -217,7 +221,8 @@ class Subbly_Installer_Logger
     /**
      * Takes the given context and coverts it to a string.
      *
-     * @param  array  $context The Context
+     * @param array $context The Context
+     *
      * @return string
      */
     private function contextToString($context)
@@ -243,8 +248,9 @@ class Subbly_Installer_Logger
     /**
      * Indents the given string with the given indent.
      *
-     * @param  string $string The string to indent
-     * @param  string $indent What to use as the indent.
+     * @param string $string The string to indent
+     * @param string $indent What to use as the indent.
+     *
      * @return string
      */
     private function indent($string, $indent = '    ')
@@ -254,9 +260,8 @@ class Subbly_Installer_Logger
     /**
      * System is unusable.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function emergency($message, array $context = array())
     {
@@ -269,9 +274,8 @@ class Subbly_Installer_Logger
      * Example: Entire website down, database unavailable, etc. This should
      * trigger the SMS alerts and wake you up.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function alert($message, array $context = array())
     {
@@ -283,9 +287,8 @@ class Subbly_Installer_Logger
      *
      * Example: Application component unavailable, unexpected exception.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function critical($message, array $context = array())
     {
@@ -296,9 +299,8 @@ class Subbly_Installer_Logger
      * Runtime errors that do not require immediate action but should typically
      * be logged and monitored.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function error($message, array $context = array())
     {
@@ -311,9 +313,8 @@ class Subbly_Installer_Logger
      * Example: Use of deprecated APIs, poor use of an API, undesirable things
      * that are not necessarily wrong.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function warning($message, array $context = array())
     {
@@ -323,9 +324,8 @@ class Subbly_Installer_Logger
     /**
      * Normal but significant events.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function notice($message, array $context = array())
     {
@@ -337,9 +337,8 @@ class Subbly_Installer_Logger
      *
      * Example: User logs in, SQL logs.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function info($message, array $context = array())
     {
@@ -349,9 +348,8 @@ class Subbly_Installer_Logger
     /**
      * Detailed debug information.
      *
-     * @param  string $message
-     * @param  array  $context
-     * @return null
+     * @param string $message
+     * @param array  $context
      */
     public function debug($message, array $context = array())
     {

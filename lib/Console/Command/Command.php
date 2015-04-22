@@ -18,7 +18,7 @@ class Command extends BaseCommand
     protected $fs;
 
     /**
-     * Initialize
+     * Initialize.
      *
      * @param InputInterface  $input
      * @param OutputInterface $output

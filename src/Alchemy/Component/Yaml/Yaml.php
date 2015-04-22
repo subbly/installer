@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Yaml Class
+ * Yaml Class.
  *
  * A Simple & Lightweight PHP/YAML Class
  * This is the maintained version of spyc library, it was renamed to Yaml
@@ -25,13 +25,15 @@
  * @author Vlad Andersen <vlad.andersen@gmail.com>
  * @author Chris Wanstrath <chris@ozmm.org>
  * @author Erik Amaru Ortiz <aortiz.erik@gmail.com>
+ *
  * @link   (origin) http://code.google.com/p/spyc/ last rev. 2011
  * @link   (current) https://github.com/eriknyk/Yaml
+ *
  * @copyright Copyright 2005-2006 Chris Wanstrath,
  * @copyright 2006-2011 Vlad Andersen
  * @copyright 2012 Erik Amaru Ortiz <aortiz.erik@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
- * @package Yaml
+ *
  * @version 1.0
  */
 class Alchemy_Component_Yaml_Yaml
@@ -56,6 +58,7 @@ class Alchemy_Component_Yaml_Yaml
 
     /**
      * Private vars.
+     *
      * @var mixed
      */
     private $dumpIndent;
@@ -70,6 +73,7 @@ class Alchemy_Component_Yaml_Yaml
 
     /**
      * Path modifier that should be applied after adding current element.
+     *
      * @var array
      */
     private $delayedPath = array();
@@ -81,7 +85,8 @@ class Alchemy_Component_Yaml_Yaml
     public $nodeId;
 
     /**
-     * Yaml Construct
+     * Yaml Construct.
+     *
      * @param string $file (alternative) path of yaml file
      */
     public function __construct($file = '')
@@ -92,10 +97,11 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Load a yaml file & parse
+     * Load a yaml file & parse.
      *
-     * @param  string $file path of yaml file
-     * @return array  yaml parsed result
+     * @param string $file path of yaml file
+     *
+     * @return array yaml parsed result
      */
     public function load($file)
     {
@@ -103,10 +109,11 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Load a yaml string & parse
+     * Load a yaml string & parse.
      *
-     * @param  string $yamlContent string conatining yaml content
-     * @return array  yaml parsed result
+     * @param string $yamlContent string conatining yaml content
+     *
+     * @return array yaml parsed result
      */
     public function loadString($yamlContent)
     {
@@ -115,7 +122,9 @@ class Alchemy_Component_Yaml_Yaml
 
     /**
      * Load a valid YAML file to Spyc.
-     * @param  string $file
+     *
+     * @param string $file
+     *
      * @return array
      */
     public function loadFile($file)
@@ -124,7 +133,7 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Dump PHP array to YAML
+     * Dump PHP array to YAML.
      *
      * The dump method, when supplied with an array, will do its best
      * to convert the array into friendly YAML.  Pretty simple.  Feel free to
@@ -138,10 +147,12 @@ class Alchemy_Component_Yaml_Yaml
      * you can turn off wordwrap by passing in 0.
      *
      * @access public
+     *
      * @return string
-     * @param  array  $array    PHP array
-     * @param  int    $indent   Pass in false to use the default, which is 2
-     * @param  int    $wordwrap Pass in 0 for no wordwrap, false for default (40)
+     *
+     * @param array $array    PHP array
+     * @param int   $indent   Pass in false to use the default, which is 2
+     * @param int   $wordwrap Pass in 0 for no wordwrap, false for default (40)
      */
     public function dump($array, $indent = false, $wordwrap = false)
     {
@@ -182,9 +193,12 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Attempts to convert a key / value array item to YAML
+     * Attempts to convert a key / value array item to YAML.
+     *
      * @access private
+     *
      * @return string
+     *
      * @param $key The name of the key
      * @param $value The value of the item
      * @param $indent The indent of the current node
@@ -211,9 +225,12 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Attempts to convert an array to YAML
+     * Attempts to convert an array to YAML.
+     *
      * @access private
+     *
      * @return string
+     *
      * @param $array The array you want to convert
      * @param $indent The indent of the current level
      */
@@ -239,9 +256,12 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Returns YAML from a key and a value
+     * Returns YAML from a key and a value.
+     *
      * @access private
+     *
      * @return string
+     *
      * @param $key The name of the key
      * @param $value The value of the item
      * @param $indent The indent of the current node
@@ -302,9 +322,12 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Creates a literal block for dumping
+     * Creates a literal block for dumping.
+     *
      * @access private
+     *
      * @return string
+     *
      * @param $value
      * @param $indent int The value of the indent
      */
@@ -333,9 +356,12 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Folds a string of text, if necessary
+     * Folds a string of text, if necessary.
+     *
      * @access private
+     *
      * @return string
+     *
      * @param $value The string you wish to fold
      */
     private function doFolding($value, $indent)
@@ -455,10 +481,13 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Parses YAML code and returns an array for a node
+     * Parses YAML code and returns an array for a node.
+     *
      * @access private
+     *
      * @return array
-     * @param  string $line A line from the YAML file
+     *
+     * @param string $line A line from the YAML file
      */
     private function parseLine($line)
     {
@@ -497,8 +526,11 @@ class Alchemy_Component_Yaml_Yaml
 
     /**
      * Finds the type of the passed value, returns the value as the new type.
+     *
      * @access private
-     * @param  string $value
+     *
+     * @param string $value
+     *
      * @return mixed
      */
     private function toType($value)
@@ -630,8 +662,10 @@ class Alchemy_Component_Yaml_Yaml
     }
 
     /**
-     * Used in inlines to check for more inlines or quoted strings
+     * Used in inlines to check for more inlines or quoted strings.
+     *
      * @access private
+     *
      * @return array
      */
     private function inlineEscape($inline)

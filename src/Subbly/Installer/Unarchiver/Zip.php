@@ -15,7 +15,7 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
     }
 
     /**
-     * Uncompress zip archive with PharData class
+     * Uncompress zip archive with PharData class.
      *
      * @param string $targetDir
      */
@@ -26,7 +26,7 @@ class Subbly_Installer_Unarchiver_Zip extends Subbly_Installer_Unarchiver_Unarch
     }
 
     /**
-     * Uncompress zip archive with ZipArchive class
+     * Uncompress zip archive with ZipArchive class.
      *
      * @param string $targetDir
      */

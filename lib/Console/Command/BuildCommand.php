@@ -48,7 +48,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Prepare files for compilation
+     * Prepare files for compilation.
      *
      * @param string $outputFilename
      * @param string $finalFilename
@@ -85,7 +85,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Compile the views
+     * Compile the views.
      */
     protected function compileViews()
     {
@@ -124,7 +124,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Compile the php classes
+     * Compile the php classes.
      */
     protected function compileClasses()
     {
@@ -143,7 +143,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Finaliaze the compilation
+     * Finaliaze the compilation.
      */
     protected function finalize($outputFilename)
     {
@@ -167,7 +167,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Cleanup the installer php file
+     * Cleanup the installer php file.
      */
     protected function cleanup()
     {
@@ -177,7 +177,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Get the contents of a PHP file
+     * Get the contents of a PHP file.
      *
      * @param \SplFileInfo $file
      *
