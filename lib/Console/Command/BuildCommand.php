@@ -99,7 +99,9 @@ class BuildCommand extends Command
         $views = array();
 
         foreach ($finder as $file) {
-            $views[$file->getRelativePathname()] = @file_get_contents($file->getRealPath());
+            $views[$file->getRelativePathname()] = Utility::compressHTMLCode(
+                @file_get_contents($file->getRealPath())
+            );
         }
 
         // Get common code into original ViewContainer file

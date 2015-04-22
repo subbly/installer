@@ -142,4 +142,29 @@ class Utility
         }
         return $new;
     }
+
+    /**
+     *
+     *
+     * @param string $src
+     *
+     * @return string
+     *
+     * @see http://stackoverflow.com/questions/6225351/how-to-minify-php-page-html-output
+     */
+    static public function compressHTMLCode($html)
+    {
+        return preg_replace(array(
+                '/\>[^\S ]+/s',  // strip whitespaces after tags, except space
+                '/[^\S ]+\</s',  // strip whitespaces before tags, except space
+                '/(\s)+/s'       // shorten multiple whitespace sequences
+            ),
+            array(
+                '>',
+                '<',
+                '\\1'
+            ),
+            $html
+        );
+    }
 }
