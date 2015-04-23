@@ -1,6 +1,6 @@
 @import "colors";
 
-$columns-content-height: 300px;
+$columns-content-height: 380px;
 
 $ui-background: $theme-grey-dark;
 $ui-color: $theme-white;
@@ -11,5 +11,8 @@ $ui-inputs-color: $theme-white;
 
 $ui-buttons-background: $theme-green;
 $ui-buttons-color: $theme-white;
+
+$ui-step-background: $theme-grey;
+$ui-step-active-background: $theme-white;
 
 $body-font-family: "Lato", Arial, sans-serif;
