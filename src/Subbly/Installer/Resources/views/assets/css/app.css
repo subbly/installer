@@ -1,4 +1,25 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Light.eot");
+  src: local("☺"), url("../fonts/Lato/Lato-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Light.woff") format("woff"), url("../fonts/Lato/Lato-Light.ttf") format("truetype"), url("../fonts/Lato/Lato-Light.svg#Lato-Light") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Regular.eot");
+  src: local("☺"), url("../fonts/Lato/Lato-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Regular.woff") format("woff"), url("../fonts/Lato/Lato-Regular.ttf") format("truetype"), url("../fonts/Lato/Lato-Regular.svg#Lato-Regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Bold.eot");
+  src: local("☺"), url("../fonts/Lato/Lato-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato/Lato-Bold.woff") format("woff"), url("../fonts/Lato/Lato-Bold.ttf") format("truetype"), url("../fonts/Lato/Lato-Bold.svg#Lato-Bold") format("svg");
+  font-weight: 600;
+  font-style: normal;
+}
 /* ==========================================================================
    Normalize.scss settings
    ========================================================================== */
@@ -7520,8 +7541,8 @@ html body a:hover, html body a:active, html body a:focus {
 html body #app-aside {
   position: fixed;
   top: 50%;
-  height: 300px;
-  margin-top: -150px;
+  height: 380px;
+  margin-top: -190px;
 }
 html body #app-aside #app-title {
   margin: 0;
@@ -7539,8 +7560,8 @@ html body .vertical-center-wrapper {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 300px;
-  margin-top: -150px;
+  height: 380px;
+  margin-top: -190px;
 }
 html body .container {
   max-width: 960px;
@@ -7560,21 +7581,64 @@ html body .subbly-form .fields-group textarea,
 html body .subbly-form .fields-group select {
   display: block;
 }
+html body .subbly-form .fields-row:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+html body .subbly-form .fields-row .fields-col {
+  float: left;
+  max-width: 300px;
+}
 html body .subbly-form label {
   margin-bottom: 10px;
-  color: #cbcbcb;
   font-size: 14px;
   font-weight: 400;
+  line-height: 1;
   text-transform: uppercase;
+  color: #6f6f6f;
 }
 html body .subbly-form input,
 html body .subbly-form textarea,
 html body .subbly-form select,
-html body .subbly-form .field-options {
-  font-weight: 300;
+html body .subbly-form .field-option {
+  max-width: 100%;
   font-size: 48px;
+  font-weight: 300;
+  line-height: 50px;
+  border: none;
+  padding: 0;
   outline: 0;
+}
+html body .subbly-form input,
+html body .subbly-form textarea,
+html body .subbly-form select,
+html body .subbly-form .field-option.active {
   color: white;
+}
+html body .subbly-form input::-moz-placeholder,
+html body .subbly-form textarea::-moz-placeholder,
+html body .subbly-form select::-moz-placeholder,
+html body .subbly-form .field-option.active::-moz-placeholder {
+  color: #6f6f6f;
+  opacity: 1;
+}
+html body .subbly-form input:-ms-input-placeholder,
+html body .subbly-form textarea:-ms-input-placeholder,
+html body .subbly-form select:-ms-input-placeholder,
+html body .subbly-form .field-option.active:-ms-input-placeholder {
+  color: #6f6f6f;
+}
+html body .subbly-form input::-webkit-input-placeholder,
+html body .subbly-form textarea::-webkit-input-placeholder,
+html body .subbly-form select::-webkit-input-placeholder,
+html body .subbly-form .field-option.active::-webkit-input-placeholder {
+  color: #6f6f6f;
+}
+html body .subbly-form .field-option {
+  cursor: pointer;
+  margin-right: 10px;
+  color: #6f6f6f;
 }
 html body .subbly-form input[type="text"],
 html body .subbly-form input[type="search"],
@@ -7586,9 +7650,10 @@ html body .subbly-form input[type="email"] {
 }
 html body .button,
 html body .subbly-form input[type="submit"].button {
-  padding: 20px 50px;
+  padding: 12px 35px;
   font-size: 14px;
   font-weight: 600;
+  line-height: 1;
   border: none;
   background: #4aa071;
   color: white;
@@ -7596,4 +7661,29 @@ html body .subbly-form input[type="submit"].button {
 html body .button.button-rounded,
 html body .subbly-form input[type="submit"].button.button-rounded {
   border-radius: 50px;
+}
+html body .steps {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+  list-style: none;
+}
+html body .steps.right {
+  right: 20px;
+}
+html body .steps .step {
+  width: 8px;
+  height: 8px;
+  margin-bottom: 12px;
+}
+html body .steps .step a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #6f6f6f;
+}
+html body .steps .step a.active {
+  background: white;
 }

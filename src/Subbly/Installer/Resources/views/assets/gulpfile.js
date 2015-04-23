@@ -10,6 +10,7 @@ var gulp       = require('gulp'),
   prefix       = require('gulp-autoprefixer'),
   concat       = require('gulp-concat'),
   uglify       = require('gulp-uglify'),
+  base64       = require('gulp-base64'),
   paths        = {
     bower: 'bower_components/',
     scss: 'sass/',
@@ -33,6 +34,10 @@ gulp.task('styles', function () {
     .on('error', gutil.log)
     .pipe(gulp.dest(paths.css))
     .pipe(size())
+    .pipe(base64())
+    .on('error', gutil.log)
+    .pipe(concat('app.css'))
+    .on('error', gutil.log)
     .pipe(minifycss())
     .on('error', gutil.log)
     .pipe(size())
@@ -50,6 +55,7 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
   return gulp.src([
       paths.bower + 'jquery/dist/jquery.js',
+      paths.bower + 'smooth-scroll.js/dist/js/smooth-scroll.js',
       paths.js + 'main.js'
     ])
     .pipe(concat('app.js'))
@@ -72,7 +78,7 @@ gulp.task('watch', function () {
   // Watch .scss files
   gulp.watch(paths.scss + '*.scss', ['styles']);
   // Watch .js files
-  gulp.watch(paths.js + '*.js', ['scripts']);
+  gulp.watch(paths.js + 'main.js', ['scripts']);
 });
 
 // Serve
