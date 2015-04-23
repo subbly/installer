@@ -50,6 +50,7 @@ class Subbly_Installer_Requirements
         Subbly_Installer_Logger::get()->info(sprintf('Check the requirements'));
 
         // TODO Check PHP
+        Subbly_Installer_Logger::get()->info(sprintf('Check PHP version'));
 
         // Check des modules
         foreach ($this->modules as $groupName => $modulesGroup) {

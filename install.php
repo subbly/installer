@@ -19,4 +19,4 @@ define('HANGAR_API_CMSLATEST', HANGAR_API_HOST.'/cms/latest');
 $installer = new Subbly_Installer_Application();
 $installer->run();
 
-// Subbly_Installer_Logger::get()->info(sprintf('Welcome! Subbly is now installed'));
+Subbly_Installer_Logger::get()->info(sprintf('Welcome! Subbly is now installed'));
