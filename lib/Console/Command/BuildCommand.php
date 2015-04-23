@@ -29,7 +29,12 @@ class BuildCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $outputFilename = $this->getRootDir().'/build/installer.php.build';
-        $finalFilename  = $this->getRootDir().'/build/installer.php';
+        $finalFilename  = sprintf('%s/%s-%s%s',
+            $this->getRootDir(),
+            'build/installer',
+            \Subbly_Installer_Application::VERSION,
+            '.php'
+        );
 
         $this->output->writeln(' > <comment>Prepare</comment>');
         $this->prepare($outputFilename, $finalFilename);
