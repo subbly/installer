@@ -15,8 +15,8 @@ class Subbly_Installer_I18n
     private static $locales = array(
         'en' => array(
             // requirements.php
-            'requirements.title' => 'Requirements',
-            'requirements.text'  => 'Some php modules are missing :/.',
+            'requirements.title'                        => 'Requirements',
+            'requirements.text'                         => 'Some php modules are missing :/.',
 
             // install.php
             'form.generic.title'                        => 'Welcome,<br />install your lovely shop',
@@ -52,32 +52,40 @@ class Subbly_Installer_I18n
         ),
         'fr' => array(
             // // requirements.php
-            // 'requirements.title' => 'Prérequis',
-            // 'requirements.text'  => 'Certains modules PHP sont introuvables :/.',
+            'requirements.title'                        => 'Prérequis',
+            'requirements.text'                         => 'Certains modules PHP sont introuvables :/.',
 
-            // // install.php
-            // 'form.generic.title'                    => 'Bienvenue,<br />installez votre adorable boutique',
-            // 'form.generic.languages.label'          => 'Langue d\'installation',
-            // 'form.generic.languages.english'        => 'english',
-            // 'form.generic.languages.french'         => 'français',
-            // 'form.generic.shop_name.label'          => 'Nom de votre boutique',
-            // 'form.generic.shop_name.placeholder'    => 'Ma boutique',
-            // 'form.generic.admin.base_url.label'     => 'URL de base de l\'interface d\'administration (/admin)',
-            // 'form.generic.links.next'               => 'Démarrer l\'aventure',
+            // install.php
+            'form.generic.title'                        => 'Bienvenue,<br />installez votre adorable boutique',
+            'form.generic.languages.label'              => 'Langue d\'installation',
+            'form.generic.languages.english'            => 'english',
+            'form.generic.languages.french'             => 'français',
+            'form.generic.shop_name.label'              => 'Nom de votre boutique',
+            'form.generic.shop_name.placeholder'        => 'Ma boutique',
+            'form.generic.links.next'                   => 'Démarrer l\'aventure',
 
-            // 'form.user.title'    => 'Paramètres utilisateur (administrateur)',
-            // 'form.user.email'    => 'Adresse mail',
-            // 'form.user.password' => 'Mot de passe',
-            // 'form.user.links.next' => 'Etape suivante',
+            'form.user.title'                           => 'Paramètres utilisateur (administrateur)',
+            'form.user.email.label'                     => 'Adresse mail',
+            'form.user.email.placeholder'               => 'contact@maboutique.fr',
+            'form.user.password'                        => 'Mot de passe',
+            'form.user.password.placeholder'            => 'pa33w0rd',
+            'form.user.admin.base_url.label'            => 'Votre repertoire d\'administration (optionnal)',
+            'form.user.admin.base_url.placeholder'      => 'admin',
+            'form.user.links.next'                      => 'Etape suivante',
 
-            // 'form.db.title'    => 'Paramètres de base de données',
-            // 'form.db.host'     => 'Hôte de la base',
-            // 'form.db.name'     => 'Nom de la base',
-            // 'form.db.username' => 'Nom d\'utilisateur',
-            // 'form.db.password' => 'Mot de passe utilisateur',
-            // 'form.db.prefix'   => 'Préfixe des tables',
+            'form.db.title'                             => 'Paramètres de base de données',
+            'form.db.host.label'                        => 'Hôte de la base',
+            'form.db.host.placeholder'                  => '127.0.0.1',
+            'form.db.name.label'                        => 'Nom de la base',
+            'form.db.name.placeholder'                  => 'subbly',
+            'form.db.username.label'                    => 'Nom d\'utilisateur',
+            'form.db.username.placeholder'              => 'subbly',
+            'form.db.password.label'                    => 'Mot de passe utilisateur',
+            'form.db.password.placeholder'              => 'pa33w0rd',
+            'form.db.prefix.label'                      => 'Préfixe des tables',
+            'form.db.prefix.placeholder'                => 'subbly_',
 
-            // 'form.submit' => 'Terminer',
+            'form.submit'                               => 'Terminer',
         ),
     );
 
