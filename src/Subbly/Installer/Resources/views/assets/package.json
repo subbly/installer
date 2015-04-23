@@ -4,7 +4,8 @@
   "description": "Subbly CMS installer template",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "gulp serve",
+    "build": "gulp build"
   },
   "author": "Florent Schildknecht <contact@florentschildknecht.com>",
   "license": "",

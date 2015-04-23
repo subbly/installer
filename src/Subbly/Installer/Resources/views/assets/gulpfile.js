@@ -48,10 +48,6 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-  console.log([
-      paths.bower + 'jquery/dist/jquery.js',
-      paths.js + 'main.js'
-    ])
   return gulp.src([
       paths.bower + 'jquery/dist/jquery.js',
       paths.js + 'main.js'
