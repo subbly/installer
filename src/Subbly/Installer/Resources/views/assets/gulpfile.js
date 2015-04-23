@@ -34,9 +34,6 @@ gulp.task('styles', function () {
     .on('error', gutil.log)
     .pipe(gulp.dest(paths.css))
     .pipe(size())
-    .pipe(base64())
-    .on('error', gutil.log)
-    .pipe(concat('app.css'))
     .on('error', gutil.log)
     .pipe(minifycss())
     .on('error', gutil.log)
@@ -73,6 +70,20 @@ gulp.task('scripts', function () {
     }));
 });
 
+// Base64 encode
+gulp.task('base64', function () {
+  return gulp.src(paths.css + 'app.min.css')
+    .pipe(base64({
+      debug: true
+    }))
+    .on('error', gutil.log)
+    .pipe(concat('app.min.css'))
+    .pipe(gulp.dest(paths.css))
+    .pipe(notify({
+      message: '[Base64] <%= file.relative %> finished'
+    }));
+});
+
 // Watch
 gulp.task('watch', function () {
   // Watch .scss files
@@ -87,7 +98,9 @@ gulp.task('serve', ['styles', 'scripts'], function () {
 });
 
 // Build
-gulp.task('build', ['styles', 'scripts']);
+gulp.task('build', ['styles', 'scripts'], function () {
+  return gulp.start('base64');
+});
 
 // Default task
 gulp.task('default', ['serve']);
