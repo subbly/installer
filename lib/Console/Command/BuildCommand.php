@@ -13,7 +13,7 @@ class BuildCommand extends Command
     protected $installerFile;
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -24,7 +24,7 @@ class BuildCommand extends Command
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -74,11 +74,6 @@ class BuildCommand extends Command
             $this->fs->remove($outputFilename);
             $this->fs->remove($finalFilename);
         }
-
-        $this->fs->copy(
-            $this->getRootDir().'/lib/Resources/installer.php.template',
-            $outputFilename
-        );
 
         $file = new \SplFileInfo($this->getRootDir().'/build/installer.php.build');
         $this->installerFile = $file->openFile('a+');
@@ -160,8 +155,19 @@ class BuildCommand extends Command
         $file       = new \SplFileInfo($outputFilename);
         $fileObject = $file->openFile('a+');
 
+        // File comment headers.
+        $replacements = array(
+            '%version%' => \Subbly_Installer_Application::VERSION,
+        );
+        $content = @file_get_contents($this->getRootDir().'/lib/Resources/installer.php.template');
+        $content = str_replace(array_keys($replacements), array_values($replacements), $content);
+
+        $fileObject->fwrite($content);
+
+        // Code.
         $content = @file_get_contents($this->installerFile->getRealPath());
-        $content = Utility::compressPHPCode($content);
+        $content = Utility::compressPHPCode('<?php ' . $content);
+        $content = str_replace('<?php ', '', $content);
 
         $fileObject->fwrite($content);
     }
@@ -171,8 +177,6 @@ class BuildCommand extends Command
      */
     protected function cleanup()
     {
-        // TODO Try to uglify the php
-        //       - Remove comments
         $this->fs->remove($this->installerFile->getRealPath());
     }
 
@@ -191,16 +195,8 @@ class BuildCommand extends Command
 
         $content = @file_get_contents($file->getRealPath());
 
-        // // Remove comments
-        // $content = preg_replace('!/\*.*?\*/!s', '', $content);
-        // $content = preg_replace('/\n\s*\n/', "\n", $content);
-        // $content = preg_replace("/^\s*\/\/.+$/m", '', $content);
-        //
-        // // Remove empty lines
-        // $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
-
         // Remove first line "<?php"
-        $content = str_replace("<?php", '', $content);
+        $content = str_replace('<?php', '', $content);
 
         return $content;
     }
