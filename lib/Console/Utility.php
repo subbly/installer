@@ -143,7 +143,7 @@ class Utility
     }
 
     /**
-     * @param string $src
+     * @param string $html
      *
      * @return string
      *

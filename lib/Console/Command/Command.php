@@ -37,7 +37,7 @@ class Command extends BaseCommand
     }
 
     /**
-     *
+     * Get root directory.
      */
     protected function getRootDir()
     {
