@@ -5,7 +5,7 @@ class Subbly_Installer_Application
     const VERSION = '0.1.0.alpha3.devel';
 
     /**
-     * The constructor
+     * The constructor.
      */
     public function __construct()
     {
@@ -34,16 +34,15 @@ class Subbly_Installer_Application
             $requirements->check();
 
             if (!$requirements->isOK()) {
-                // TODO show page with the missing requirements
                 return $this->showRequirementsView($requirements);
             }
 
             $form = new Subbly_Installer_FormValidator(
-                Subbly_Installer_View::request_input()
+                Subbly_Installer_View::getRequestInput()
             );
 
             // Show the form for the setting values
-            if (Subbly_Installer_View::request_input('submit') === null) {
+            if (Subbly_Installer_View::getRequestInput('submit') === null) {
                 return $this->showSettingsFormView($form);
             }
 

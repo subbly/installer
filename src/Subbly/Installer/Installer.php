@@ -12,7 +12,7 @@ class Subbly_Installer_Installer
     }
 
     /**
-     * Download the latest version of the CMS
+     * Download the latest version of the CMS.
      */
     public function downloadLatest()
     {
@@ -34,7 +34,7 @@ class Subbly_Installer_Installer
     }
 
     /**
-     * Uncompress the downloaded archive
+     * Uncompress the downloaded archive.
      */
     public function uncompress()
     {
@@ -56,7 +56,7 @@ class Subbly_Installer_Installer
     }
 
     /**
-     * Install the CMS
+     * Install the CMS.
      *
      * @param Subbly_Installer_FormValidator $form
      */
@@ -92,7 +92,7 @@ class Subbly_Installer_Installer
     }
 
     /**
-     * Verfiy a checksum
+     * Verfiy a checksum.
      *
      * @param string $file     Path of the file to check
      * @param string $checksum
@@ -105,7 +105,7 @@ class Subbly_Installer_Installer
     }
 
     /**
-     * Get the mime type of the downloaded archive
+     * Get the mime type of the downloaded archive.
      *
      * @param string $filename
      *

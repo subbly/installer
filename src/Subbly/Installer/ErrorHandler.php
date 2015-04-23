@@ -33,7 +33,7 @@ class Subbly_Installer_ErrorHandler
     }
 
     /**
-     * Turn off errors
+     * Turn off errors.
      */
     public static function quiet()
     {

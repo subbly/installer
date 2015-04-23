@@ -8,8 +8,9 @@ class Subbly_Installer_I18n
     const DEFAULT_LOCALE = 'en';
 
     /**
-     * List of locales
-     * @var array $locales
+     * List of locales.
+     *
+     * @var array
      */
     private static $locales = array(
         'en' => array(
@@ -41,7 +42,7 @@ class Subbly_Installer_I18n
     );
 
     /**
-     * Get the translated word or sentence for a given key
+     * Get the translated word or sentence for a given key.
      *
      * @param string $key
      * @param array  $params

@@ -3,7 +3,13 @@
 class Subbly_Installer_View
 {
     /**
+     * Render a template.
      *
+     * @param string  $templateName
+     * @param array   $params
+     * @param boolean $layout
+     *
+     * @static
      */
     public static function render($templateName, array $params = array(), $layout = true)
     {
@@ -13,9 +19,13 @@ class Subbly_Installer_View
     }
 
     /**
+     * Retrieve the request inputs
      *
+     * @param null|string $key
+     *
+     * @static
      */
-    public static function request_input($key = null)
+    public static function getRequestInputs($key = null)
     {
         $inputs = array_merge($_GET, $_POST);
 

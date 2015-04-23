@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class TestCommand extends Command
 {
     /**
-     *
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -19,7 +19,7 @@ class TestCommand extends Command
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

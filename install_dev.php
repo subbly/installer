@@ -3,7 +3,7 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 # set env devel
-define('BASEDIR', __DIR__.'/tmp/sandbox');
+define('BASEDIR', __DIR__.'/tmp/dummy');
 define('DEBUG', true);
 define('HANGAR_API_HOST', 'http://hangar.subbly.dev/api/v1');
 
