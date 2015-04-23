@@ -66,6 +66,8 @@ class Subbly_Installer_Application
      */
     protected function showRequirementsView(Subbly_Installer_Requirements $requirements)
     {
+        header('Content-Type: text/html; charset=utf-8');
+
         return Subbly_Installer_View::render('requirements.html.php', array(
             'requirements' => $requirements,
         ));
@@ -76,6 +78,8 @@ class Subbly_Installer_Application
      */
     protected function showSettingsFormView()
     {
+        header('Content-Type: text/html; charset=utf-8');
+
         return Subbly_Installer_View::render('install.html.php');
     }
 
