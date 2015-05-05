@@ -1,6 +1,6 @@
-@mixin placeholder($color) {
-    &::-webkit-input-placeholder {color: $color;}
-    &:-moz-placeholder           {color: $color;}
-    &::-moz-placeholder          {color: $color;}
-    &:-ms-input-placeholder      {color: $color;}
+@mixin placeholder ($color, $line-height: 1) {
+    &::-webkit-input-placeholder {color: $color;line-height:$line-height;}
+    &:-moz-placeholder           {color: $color;line-height:$line-height;}
+    &::-moz-placeholder          {color: $color;line-height:$line-height;}
+    &:-ms-input-placeholder      {color: $color;line-height:$line-height;}
 }

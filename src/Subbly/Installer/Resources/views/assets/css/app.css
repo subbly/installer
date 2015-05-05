@@ -7546,6 +7546,7 @@ html body #app-aside {
 }
 html body #app-aside #app-title {
   margin: 0;
+  text-align: right;
 }
 html body #app-content {
   position: relative;
@@ -7616,24 +7617,33 @@ html body .subbly-form select,
 html body .subbly-form .field-option.active {
   color: white;
 }
+html body .subbly-form input::-webkit-input-placeholder,
+html body .subbly-form textarea::-webkit-input-placeholder,
+html body .subbly-form select::-webkit-input-placeholder,
+html body .subbly-form .field-option.active::-webkit-input-placeholder {
+  color: #6f6f6f;
+  line-height: 1;
+}
+html body .subbly-form input:-moz-placeholder,
+html body .subbly-form textarea:-moz-placeholder,
+html body .subbly-form select:-moz-placeholder,
+html body .subbly-form .field-option.active:-moz-placeholder {
+  color: #6f6f6f;
+  line-height: 1;
+}
 html body .subbly-form input::-moz-placeholder,
 html body .subbly-form textarea::-moz-placeholder,
 html body .subbly-form select::-moz-placeholder,
 html body .subbly-form .field-option.active::-moz-placeholder {
   color: #6f6f6f;
-  opacity: 1;
+  line-height: 1;
 }
 html body .subbly-form input:-ms-input-placeholder,
 html body .subbly-form textarea:-ms-input-placeholder,
 html body .subbly-form select:-ms-input-placeholder,
 html body .subbly-form .field-option.active:-ms-input-placeholder {
   color: #6f6f6f;
-}
-html body .subbly-form input::-webkit-input-placeholder,
-html body .subbly-form textarea::-webkit-input-placeholder,
-html body .subbly-form select::-webkit-input-placeholder,
-html body .subbly-form .field-option.active::-webkit-input-placeholder {
-  color: #6f6f6f;
+  line-height: 1;
 }
 html body .subbly-form .field-option {
   cursor: pointer;
@@ -7686,4 +7696,46 @@ html body .steps .step a {
 }
 html body .steps .step a.active {
   background: white;
+}
+@media (max-width: 767px) {
+  html body #app-aside {
+    position: relative;
+    top: 0;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 35px;
+  }
+  html body #app-aside #app-title {
+    text-align: left;
+  }
+  html body .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  html body .full {
+    height: auto;
+  }
+  html body .vertical-center-wrapper {
+    position: relative;
+    top: 0;
+    height: auto;
+    margin-top: 20px;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+  html body .button-step {
+    display: none;
+  }
+  html body .subbly-form .fields-row .fields-col {
+    float: none;
+    max-width: 100%;
+  }
+  html body .subbly-form input,
+  html body .subbly-form textarea,
+  html body .subbly-form select,
+  html body .subbly-form .field-option {
+    font-size: 20px;
+    line-height: 24px;
+  }
 }

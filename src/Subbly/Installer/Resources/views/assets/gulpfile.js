@@ -51,6 +51,7 @@ gulp.task('styles', function () {
 // Scripts
 gulp.task('scripts', function () {
   return gulp.src([
+      paths.bower + 'vue/dist/vue.js',
       paths.bower + 'jquery/dist/jquery.js',
       paths.bower + 'smooth-scroll.js/dist/js/smooth-scroll.js',
       paths.js + 'main.js'

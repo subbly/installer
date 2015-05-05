@@ -1,9 +1,10 @@
 @import "fonts";
-@import "mixins";
 @import "variables";
 
 @import "../bower_components/normalize-scss/normalize";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "mixins";
 
 html {
     body {
@@ -27,6 +28,7 @@ html {
             margin-top: -($columns-content-height / 2);
             #app-title {
                 margin: 0;
+                text-align: right;
             }
         }
         #app-content {
@@ -150,6 +152,51 @@ html {
                     &.active {
                         background: $ui-step-active-background;
                     }
+                }
+            }
+        }
+        // Mobile support
+        @media (max-width: $responsive-breakpoint) {
+            #app-aside {
+                position: relative;
+                top: 0;
+                height: auto;
+                margin-top: 20px;
+                margin-bottom: 35px;
+                #app-title {
+                    text-align: left;
+                }
+            }
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .full {
+                height: auto;
+            }
+            .vertical-center-wrapper {
+                position: relative;
+                top: 0;
+                height: auto;
+                margin-top: 20px;
+                transform: none;
+            }
+            .button-step {
+                display: none;
+            }
+            .subbly-form {
+                .fields-row {
+                    .fields-col {
+                        float: none;
+                        max-width: 100%;
+                    }
+                }
+                input,
+                textarea,
+                select,
+                .field-option {
+                    font-size: 20px;
+                    line-height: 24px;
                 }
             }
         }
