@@ -6,13 +6,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Console\Utility;
 
 class BuildCommand extends Command
 {
     protected $installerFile;
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -23,7 +24,7 @@ class BuildCommand extends Command
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -39,15 +40,15 @@ class BuildCommand extends Command
         $this->output->writeln(' > <comment>Compile classes</comment>');
         $this->compileClasses(); // Get all php Class files into src/ and past the content into the export file
 
-        $this->output->writeln(' > <comment>Cleanup</comment>');
-        $this->cleanup();
-
         $this->output->writeln(' > <comment>Finalize the compilation</comment>');
         $this->finalize($finalFilename);
+
+        $this->output->writeln(' > <comment>Cleanup</comment>');
+        $this->cleanup();
     }
 
     /**
-     * Prepare files for compilation
+     * Prepare files for compilation.
      *
      * @param string $outputFilename
      * @param string $finalFilename
@@ -74,17 +75,12 @@ class BuildCommand extends Command
             $this->fs->remove($finalFilename);
         }
 
-        $this->fs->copy(
-            $this->getRootDir().'/lib/Resources/installer.php.template',
-            $outputFilename
-        );
-
         $file = new \SplFileInfo($this->getRootDir().'/build/installer.php.build');
         $this->installerFile = $file->openFile('a+');
     }
 
     /**
-     * Compile the views
+     * Compile the views.
      */
     protected function compileViews()
     {
@@ -98,7 +94,9 @@ class BuildCommand extends Command
         $views = array();
 
         foreach ($finder as $file) {
-            $views[$file->getRelativePathname()] = @file_get_contents($file->getRealPath());
+            $views[$file->getRelativePathname()] = Utility::compressHTMLCode(
+                @file_get_contents($file->getRealPath())
+            );
         }
 
         // Get common code into original ViewContainer file
@@ -121,7 +119,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Compile the php classes
+     * Compile the php classes.
      */
     protected function compileClasses()
     {
@@ -140,16 +138,7 @@ class BuildCommand extends Command
     }
 
     /**
-     * Cleanup the installer php file
-     */
-    protected function cleanup()
-    {
-        // TODO Try to uglify the php
-        //       - Remove comments
-    }
-
-    /**
-     * Finaliaze the compilation
+     * Finaliaze the compilation.
      */
     protected function finalize($outputFilename)
     {
@@ -163,11 +152,36 @@ class BuildCommand extends Command
         // TODO in the installer file rename all class by something like C1, C2.
         //      In this way we win some characters.
 
-        $this->fs->rename($this->installerFile->getRealPath(), $outputFilename);
+        $file       = new \SplFileInfo($outputFilename);
+        $fileObject = $file->openFile('a+');
+
+        // File comment headers.
+        $replacements = array(
+            '%version%' => \Subbly_Installer_Application::VERSION,
+        );
+        $content = @file_get_contents($this->getRootDir().'/lib/Resources/installer.php.template');
+        $content = str_replace(array_keys($replacements), array_values($replacements), $content);
+
+        $fileObject->fwrite($content);
+
+        // Code.
+        $content = @file_get_contents($this->installerFile->getRealPath());
+        $content = Utility::compressPHPCode('<?php ' . $content);
+        $content = str_replace('<?php ', '', $content);
+
+        $fileObject->fwrite($content);
     }
 
     /**
-     * Get the contents of a PHP file
+     * Cleanup the installer php file.
+     */
+    protected function cleanup()
+    {
+        $this->fs->remove($this->installerFile->getRealPath());
+    }
+
+    /**
+     * Get the contents of a PHP file.
      *
      * @param \SplFileInfo $file
      *
@@ -182,15 +196,7 @@ class BuildCommand extends Command
         $content = @file_get_contents($file->getRealPath());
 
         // Remove first line "<?php"
-        $content = preg_replace("/^.+\n/", '', $content);
-
-        // Remove comments
-        $content = preg_replace('!/\*.*?\*/!s', '', $content);
-        $content = preg_replace('/\n\s*\n/', "\n", $content);
-        $content = preg_replace("/^\s*\/\/.+$/m", '', $content);
-
-        // Remove empty lines
-        $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
+        $content = str_replace('<?php', '', $content);
 
         return $content;
     }
