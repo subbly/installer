@@ -84,5 +84,3 @@
         </main>
     </div>
 </section>
-<script><?php echo Subbly_Installer_ViewContainer::partial('assets/js/app.js'); ?></script>
-

@@ -7,5 +7,9 @@
 </head>
 <body>
     <?php echo Subbly_Installer_ViewContainer::partial($_page_template, $_view_params); ?>
+    <script>
+        var translations = <?php echo json_encode($_locales_values); ?>;
+        <?php echo Subbly_Installer_ViewContainer::partial('assets/js/app.js'); ?>
+    </script>
 </body>
 </html>

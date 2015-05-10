@@ -15,8 +15,9 @@ class Subbly_Installer_ViewContainer
 
         if ($layout === true) {
             $params = array_merge($params, array(
-                '_page_template' => $templateName,
-                '_view_params'   => $params,
+                '_page_template'  => $templateName,
+                '_view_params'    => $params,
+                '_locales_values' => Subbly_Installer_I18n::allLocales(),
             ));
 
             $templateName = 'layout.html.php';
