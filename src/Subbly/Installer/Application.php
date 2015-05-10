@@ -28,12 +28,6 @@ class Subbly_Installer_Application
     {
         Subbly_Installer_Logger::get()->debug(sprintf('run: %s', __METHOD__));
 
-        if (isset($_SERVER['PHP_SELF'])) {
-            if ($this->router($_SERVER['PHP_SELF']) !== false) {
-                return;
-            }
-        }
-
         try {
             // Requirements
             $requirements = new Subbly_Installer_Requirements();
@@ -98,30 +92,5 @@ class Subbly_Installer_Application
             'form'         => $form,
             'errorMessage' => $errorMessage,
         ), false);
-    }
-
-    /**
-     *
-     */
-    protected function showI18nJSONView()
-    {
-        header('Content-Type: application/json; charset=utf-8');
-
-        echo json_encode(Subbly_Installer_I18n::allLocales());
-        return;
-    }
-
-    /**
-     *
-     */
-    protected function router($path)
-    {
-        switch ($path) {
-            case '/i18n.json':
-                return $this->showI18nJSONView();
-
-            default:
-                return false;
-        }
     }
 }
