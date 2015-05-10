@@ -19,19 +19,29 @@ class Subbly_Installer_View
     }
 
     /**
-     * Retrieve the request inputs
+     * Retrieve request inputs
      *
-     * @param null|string $key
+     * @return array
      *
      * @static
      */
-    public static function getRequestInputs($key = null)
+    public static function getRequestInputs()
     {
-        $inputs = array_merge($_GET, $_POST);
+        return array_merge($_GET, $_POST);
+    }
 
-        if ($key === null) {
-            return $inputs;
-        }
+    /**
+     * Retrieve a request input
+     *
+     * @param string $key
+     *
+     * @return mixed
+     *
+     * @static
+     */
+    public static function getRequestInput($key)
+    {
+        $inputs = self::getRequestInputs();
 
         if (($value = Subbly_Installer_Util::get_array_value($inputs, $key)) !== null) {
             return $value;

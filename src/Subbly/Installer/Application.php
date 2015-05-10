@@ -38,7 +38,7 @@ class Subbly_Installer_Application
             }
 
             $form = new Subbly_Installer_FormValidator(
-                Subbly_Installer_View::getRequestInput()
+                Subbly_Installer_View::getRequestInputs()
             );
 
             // Show the form for the setting values
