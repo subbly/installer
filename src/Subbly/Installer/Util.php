@@ -37,7 +37,9 @@ class Subbly_Installer_Util
     }
 
     /**
+     * Get a value from a path
      *
+     * @return mixed
      */
     public static function get_array_value(array $array, $path)
     {

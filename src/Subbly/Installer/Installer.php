@@ -121,7 +121,12 @@ class Subbly_Installer_Installer
     }
 
     /**
+     * Execute a command.
      *
+     * @param string $bin
+     * @param array $params
+     *
+     * @return mixed
      */
     protected function execCommand($bin, array $params = array())
     {
