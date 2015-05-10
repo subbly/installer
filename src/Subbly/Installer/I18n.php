@@ -1,11 +1,10 @@
 <?php
 
-/**
- * @deprecated MUST BE DELETED
- */
 class Subbly_Installer_I18n
 {
     const DEFAULT_LOCALE = 'en';
+
+    private static $currentLocale = null;
 
     /**
      * List of locales.
@@ -126,10 +125,36 @@ class Subbly_Installer_I18n
     }
 
     /**
+     * Get all locales values.
      *
+     * @return array
+     */
+    public static function allLocales()
+    {
+        return self::$locales;
+    }
+
+    /**
+     * Set current locale.
+     *
+     * @param string $locale
+     */
+    public static function setLocale($locale)
+    {
+        self::$currentLocale = $locale;
+    }
+
+    /**
+     * Get current locale.
+     *
+     * @return string
      */
     public static function getLocale()
     {
-        return 'fr'; // TODO dynamise it
+        if (self::$currentLocale === null) {
+            self::$currentLocale = self::DEFAULT_LOCALE;
+        }
+
+        return self::$currentLocale;
     }
 }
