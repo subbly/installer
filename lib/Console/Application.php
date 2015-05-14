@@ -4,6 +4,7 @@ namespace Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
 use Console\Command\BuildCommand;
+use Console\Command\StatsCommand;
 
 class Application extends BaseApplication
 {
@@ -19,5 +20,6 @@ class Application extends BaseApplication
         parent::__construct('Subbly installer', \Subbly_Installer_Application::VERSION);
 
         $this->add(new BuildCommand());
+        $this->add(new StatsCommand());
     }
 }
