@@ -13,8 +13,7 @@ before_script:
 script:
   # - phpunit --colors --coverage-text
   - bin/console installer:build
-  - php build/installer.php
-  - ls -lah build/installer.php
+  - bin/console installer:build:stats
   # - tree build/install.php
   # - bin/console installer:test
 
